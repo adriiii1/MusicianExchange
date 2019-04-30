@@ -30,5 +30,6 @@
     <string name="lbl_forgot_password">Olvidaste tu contraseña?</string>
     <string name="forgot_password_msg">Sólo necesitamos tu correo para mandarte las instrucciones</string>
     <string name="logo">logo</string>
+    <string name="btn_main_Wee">Pulsame!</string>
 </resources>
 
