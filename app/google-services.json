@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "604206337895",
+    "firebase_url": "https://musician-exchange.firebaseio.com",
+    "project_id": "musician-exchange",
+    "storage_bucket": "musician-exchange.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604206337895:android:7d82310501389183",
+        "android_client_info": {
+          "package_name": "com.adri.musicianexchange"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604206337895-qujkc8jc12j3ms9b31caej4fa4ur02e0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJKu2WoP_zGy6azTiWO-vptjWVmJn4zfk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "604206337895-qujkc8jc12j3ms9b31caej4fa4ur02e0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
