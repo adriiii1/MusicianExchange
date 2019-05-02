@@ -9,9 +9,9 @@ import android.support.v7.widget.CardView
 import android.view.View
 import android.widget.ImageView
 
-class miAdapter(private val listPlaylists: ArrayList<Playlists>) :
+class miAdapterPlaylists(private val listPlaylists: ArrayList<Playlists>) :
 
-    RecyclerView.Adapter<miAdapter.playlistsViewHolder>() {
+    RecyclerView.Adapter<miAdapterPlaylists.playlistsViewHolder>() {
 
     override fun getItemCount(): Int {
         return listPlaylists.size
@@ -34,5 +34,4 @@ class miAdapter(private val listPlaylists: ArrayList<Playlists>) :
         internal var urlPlaylist: TextView= itemView.findViewById(R.id.urlPlaylist)
         internal var fotoPlaylist: ImageView= itemView.findViewById(R.id.fotoPlaylist) as ImageView
     }
-
 }

@@ -5,36 +5,39 @@
 
     <group android:checkableBehavior="single">
         <item
-                android:id="@+id/nav_home"
+                android:id="@+id/nav_playlists"
                 android:icon="@drawable/fl_listas_rep"
                 android:title="@string/menu_home"/>
         <item
-                android:id="@+id/nav_tools"
+                android:id="@+id/nav_conciertos"
                 android:icon="@drawable/fl_local_concierto"
                 android:title="@string/menu_tools"/>
         <item android:title="Anuncios"/>
-        <group
-        >
+        <group>
             <item
-                    android:id="@+id/nav_gallery"
+                    android:id="@+id/nav_ventas"
                     android:icon="@drawable/fl_local_venta"
                     android:title="@string/menu_gallery"/>
             <item
-                    android:id="@+id/nav_slideshow"
+                    android:id="@+id/nav_grupos"
                     android:icon="@drawable/fl_radio"
                     android:title="@string/menu_slideshow"/>
         </group>
         <item android:title="Publicar"/>
-        <group
-        >
-            <item
-                    android:id="@+id/nav_send"
-                    android:icon="@drawable/fl_mas_solid"
-                    android:title="@string/menu_send"/>
-            <item
-                    android:id="@+id/nav_share"
-                    android:icon="@drawable/fl_mas"
-                    android:title="@string/menu_share"/>
+        <group>
+            <item android:id="@+id/nav_venta"
+                  android:icon="@drawable/fl_mas_solid"
+                  android:title="@string/menu_send"/>
+            <item android:id="@+id/nav_grupo"
+                  android:icon="@drawable/fl_mas"
+                  android:title="@string/menu_share"/>
+
+            <item android:icon="@drawable/fl_link_s"
+                  android:title="Compartir una playlist"
+                  android:id="@+id/nav_playlist"/>
+            <item android:icon="@drawable/fl_mas_simple"
+                  android:title="Anunciar un concierto"
+                  android:id="@+id/nav_concierto"/>
         </group>
     </group>
 

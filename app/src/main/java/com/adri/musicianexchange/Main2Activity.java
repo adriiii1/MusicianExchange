@@ -67,20 +67,38 @@ public class Main2Activity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
+        if (id == R.id.nav_playlists) {
             //Listas de reproducción
             Intent intent = new Intent(this, listasActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_ventas) {
             //Anuncios de venta
-        } else if (id == R.id.nav_slideshow) {
+            Intent intent = new Intent(this, ventasActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_grupos) {
             //Anuncios de grupos
-        } else if (id == R.id.nav_tools) {
+            Intent intent = new Intent(this, gruposActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_conciertos) {
             //Conciertos
-        } else if (id == R.id.nav_share) {
+            Intent intent = new Intent(this, conciertosActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_grupo) {
             //+ anuncio de grupo
-        } else if (id == R.id.nav_send) {
+            Intent intent = new Intent(this, nuevoAnuncioGrupo.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_venta) {
             //+ anuncio de venta
+            Intent intent = new Intent(this, nuevoAnuncioVenta.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_concierto) {
+            //+ concierto
+            Intent intent = new Intent(this, nuevoAnuncioVenta.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_playlist) {
+            //+ playlist
+            Intent intent = new Intent(this, nuevoAnuncioVenta.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

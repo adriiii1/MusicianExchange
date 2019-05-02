@@ -7,34 +7,34 @@ import android.support.v7.widget.RecyclerView
 import com.google.firebase.database.*
 import com.google.gson.Gson
 
-class listasActivity : AppCompatActivity(){
+class gruposActivity : AppCompatActivity(){
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var dbReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
-    var listPlaylists: ArrayList<Playlists> = arrayListOf()
+    var listGrupos: ArrayList<Grupo> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_listas)
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = miAdapterPlaylists(listPlaylists)
+        viewAdapter = miAdapterGrupos(listGrupos)
 
         database = FirebaseDatabase.getInstance()
-        dbReference = database.getReference("Playlists")
+        dbReference = database.getReference("Grupos")
 
         val menuListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                listPlaylists.clear()
+                listGrupos.clear()
                 val gson= Gson()
                 for (objj  in dataSnapshot.children){
                     val registro=objj.getValue()
                     try {
-                        val reg:Playlists=gson.fromJson(registro.toString(),Playlists::class.java)
-                        listPlaylists.add(reg)
+                        val reg:Grupo=gson.fromJson(registro.toString(),Grupo::class.java)
+                        listGrupos.add(reg)
                     }
                     catch (e: com.google.gson.JsonSyntaxException) {}
                 }
@@ -48,6 +48,6 @@ class listasActivity : AppCompatActivity(){
                 println("loadPost:onCancelled ${databaseError.toException()}")
             }
         }
-        dbReference.child("playlists").addValueEventListener(menuListener)
+        dbReference.child("grupos").addValueEventListener(menuListener)
     }
 }
