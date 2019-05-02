@@ -82,7 +82,7 @@ public class signupActivity extends AppCompatActivity{
                                     Toast.makeText(signupActivity.this, "Error, la autenticación ha fallado." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
-                                    startActivity(new Intent(signupActivity.this, MainActivity.class));
+                                    startActivity(new Intent(signupActivity.this, Main2Activity.class));
                                     finish();
                                 }
                             }

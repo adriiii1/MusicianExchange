@@ -31,5 +31,21 @@
     <string name="forgot_password_msg">Sólo necesitamos tu correo para mandarte las instrucciones</string>
     <string name="logo">logo</string>
     <string name="btn_main_Wee">Pulsame!</string>
+
+
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Abrir el menú</string>
+    <string name="navigation_drawer_close">Cerrar el menú</string>
+    <string name="nav_header_title">Musician Exchange</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Opciones</string>
+
+    <string name="menu_home">Listas de reproducción</string>
+    <string name="menu_gallery">Anuncios de venta</string>
+    <string name="menu_slideshow">Anuncios de grupos</string>
+    <string name="menu_tools">Conciertos</string>
+    <string name="menu_share">Publicar anuncio de grupo</string>
+    <string name="menu_send">Publicar anuncio de venta</string>
 </resources>
 

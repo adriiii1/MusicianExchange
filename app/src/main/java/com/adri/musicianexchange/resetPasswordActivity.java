@@ -44,7 +44,7 @@ public class resetPasswordActivity extends AppCompatActivity{
             public void onClick(View v) {
                 String email = inputEmail.getText().toString().trim();
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplication(), "Enter your registered email id", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplication(), "Introduce el correo con el que estás registrado", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -54,9 +54,9 @@ public class resetPasswordActivity extends AppCompatActivity{
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(resetPasswordActivity.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(resetPasswordActivity.this, "Hemos enviado las instrucciones al correo", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(resetPasswordActivity.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(resetPasswordActivity.this, "No hemos podido reiniciar la contraseña", Toast.LENGTH_SHORT).show();
                                 }
                                 progressBar.setVisibility(View.GONE);
                             }
