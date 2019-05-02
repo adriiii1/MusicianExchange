@@ -21,6 +21,6 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/nav_header_main2"
-            app:menu="@menu/activity_main2_drawer" android:background="@color/bg_register"/>
+            app:menu="@menu/activity_main2_drawer" android:background="@color/input_register_bg"/>
 
 </android.support.v4.widget.DrawerLayout>
