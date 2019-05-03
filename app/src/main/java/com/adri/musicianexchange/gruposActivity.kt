@@ -31,9 +31,9 @@ class gruposActivity : AppCompatActivity(){
                 listGrupos.clear()
                 val gson= Gson()
                 for (objj  in dataSnapshot.children){
-                    val registro=objj.getValue()
+                    val registro=objj.getValue().toString()
                     try {
-                        val reg:Grupo=gson.fromJson(registro.toString(),Grupo::class.java)
+                        val reg:Grupo=gson.fromJson(registro,Grupo::class.java)
                         listGrupos.add(reg)
                     }
                     catch (e: com.google.gson.JsonSyntaxException) {}

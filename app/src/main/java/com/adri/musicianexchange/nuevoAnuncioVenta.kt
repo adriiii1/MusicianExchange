@@ -39,15 +39,21 @@ class nuevoAnuncioVenta : AppCompatActivity() {
         stReference = storage.getReference("Imagenes")
 
         btInsVenta.setOnClickListener {
-            loadDatabase(dbReference,stReference)
+            loadDatabase(dbReference)
+        }
+
+        btSelCartel.setOnClickListener {
+            chooseFile()
         }
     }
 
-    fun loadDatabase(firebaseData: DatabaseReference, firebaseStore: StorageReference) {
-        val venta = Venta(objeto = txtObjeto.text.toString(), ciudad = txtCiudad.text.toString()
-            , precio = txtPrecio.text.toString().toDouble(),tipo = txtTipo.text.toString())
+    fun loadDatabase(firebaseData: DatabaseReference) {
+        uploadImageFile()
+        val venta = Venta(objeto = txtObjeto.text.toString().replace(" ","%&%"), ciudad = txtCiudad.text.toString().replace(" ","%&%")
+            , precio = txtPrecio.text.toString().toDouble(),tipo = txtTipo.text.toString().replace(" ","%&%"))
         val key = firebaseData.child("ventas").push().key
         firebaseData.child("ventas").child(key!!).setValue(venta)
+        Toast.makeText(this,"Anuncio publicado con éxito",Toast.LENGTH_SHORT)
     }
 
     private fun chooseFile() {

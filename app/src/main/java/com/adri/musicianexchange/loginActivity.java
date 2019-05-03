@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,7 +18,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class loginActivity extends AppCompatActivity{
     private EditText inputEmail, inputPassword;
     private FirebaseAuth auth;
-    private ProgressBar progressBar;
     private Button btnSignup, btnLogin, btnReset;
 
     @Override
@@ -37,7 +35,6 @@ public class loginActivity extends AppCompatActivity{
 
         inputEmail = findViewById(R.id.email);
         inputPassword = findViewById(R.id.password);
-        progressBar = findViewById(R.id.progressBar);
         btnSignup = findViewById(R.id.btn_signup);
         btnLogin = findViewById(R.id.btn_login);
         btnReset = findViewById(R.id.btn_reset_password);
@@ -74,12 +71,10 @@ public class loginActivity extends AppCompatActivity{
                     return;
                 }
 
-                progressBar.setVisibility(View.VISIBLE);
                 auth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(loginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                progressBar.setVisibility(View.GONE);
                                 if (!task.isSuccessful()) {
                                     if (password.length() < 6) {
                                         inputPassword.setError(getString(R.string.minimum_password));
@@ -87,7 +82,8 @@ public class loginActivity extends AppCompatActivity{
                                         Toast.makeText(loginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                     }
                                 } else {
-                                    Intent intent = new Intent(loginActivity.this, MainActivity.class);
+                                    Toast.makeText(loginActivity.this,"Sesión iniciada",Toast.LENGTH_SHORT);
+                                    Intent intent = new Intent(loginActivity.this, Main2Activity.class);
                                     startActivity(intent);
                                     finish();
                                 }

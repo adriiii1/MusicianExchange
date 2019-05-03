@@ -18,9 +18,9 @@ class miAdapterVentas(private val listVentas: ArrayList<Venta>) :
     }
 
     override fun onBindViewHolder(p0: ventasViewHolder, p1: Int) {
-        p0.objeto.text = listVentas[p1].objeto
-        p0.tipo.text = listVentas[p1].tipo
-        p0.ciudad.text = listVentas[p1].ciudad
+        p0.objeto.text = listVentas[p1].objeto.replace("%&%"," ")
+        p0.tipo.text = listVentas[p1].tipo.replace("%&%"," ")
+        p0.ciudad.text = listVentas[p1].ciudad.replace("%&%"," ")
         p0.precio.text = listVentas[p1].precio.toString()
         p0.fotoObjeto.setImageURI(Uri.parse(listVentas[p1].fotoObjeto))
     }

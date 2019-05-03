@@ -4,14 +4,10 @@
     <color name="colorPrimaryDark">#4D6557</color>
     <color name="colorAccent">#1BD8AC</color>
 
-    <gradient name="bg_gradient" android:startColor="#49777A"
-              android:endColor="#744C36"
-              android:angle="-270"/>
-
     <color name="bg_login">#26AE90</color>
     <color name="bg_register">#2E3237</color>
     <color name="bg_main">#428bca</color>
-    <color name="white">#ffffff</color>
+    <color name="white">#FFFFFF</color>
     <color name="input_login">#222222</color>
     <color name="input_login_hint">#999999</color>
     <color name="input_register">#888888</color>

@@ -33,13 +33,13 @@
     <string name="btn_main_Wee">Pulsame!</string>
 
 
-    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_main2">Musician Exchange</string>
     <string name="navigation_drawer_open">Abrir el menú</string>
     <string name="navigation_drawer_close">Cerrar el menú</string>
     <string name="nav_header_title">Musician Exchange</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Opciones</string>
+    <string name="action_settings">Cerrar sesión</string>
 
     <string name="menu_home">Listas de reproducción</string>
     <string name="menu_gallery">Anuncios de venta</string>

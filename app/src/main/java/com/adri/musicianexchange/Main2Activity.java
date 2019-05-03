@@ -2,6 +2,7 @@ package com.adri.musicianexchange;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
@@ -11,9 +12,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.TextView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,14 @@ public class Main2Activity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        auth = FirebaseAuth.getInstance();
+
+        final FirebaseUser user = auth.getCurrentUser();
+
+        TextView txtUsuario= findViewById(R.id.txtUsuario);
+        txtUsuario.setText(String.valueOf(user.getEmail()));
     }
 
     @Override
@@ -56,7 +70,9 @@ public class Main2Activity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            auth.signOut();
+            startActivity(new Intent(Main2Activity.this, loginActivity.class));
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

@@ -18,7 +18,7 @@ class miAdapterPlaylists(private val listPlaylists: ArrayList<Playlists>) :
     }
 
     override fun onBindViewHolder(p0: playlistsViewHolder, p1: Int) {
-        p0.nombrePlaylist.text = listPlaylists[p1].nombrePlaylist
+        p0.nombrePlaylist.text = listPlaylists[p1].nombrePlaylist.replace("%&%"," ")
         p0.urlPlaylist.text = listPlaylists[p1].urlPlaylists
         p0.fotoPlaylist.setImageURI(Uri.parse(listPlaylists[p1].fotoPlaylists))
     }

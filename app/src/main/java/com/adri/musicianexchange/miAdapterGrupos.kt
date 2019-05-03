@@ -16,10 +16,10 @@ class miAdapterGrupos(private val listGrupos: ArrayList<Grupo>) :
     }
 
     override fun onBindViewHolder(p0: gruposViewHolder, p1: Int) {
-        p0.nombreGrupo.text = "Grupo: "+listGrupos[p1].nombreGrupo
-        p0.generoGrupo.text = "Género: "+listGrupos[p1].generoGrupo
-        p0.ciudadGrupo.text = "Ciudad: "+listGrupos[p1].ciudad
-        p0.plazasGrupo.text = "Buscan: "+listGrupos[p1].plazas
+        p0.nombreGrupo.text = listGrupos[p1].nombreGrupo.replace("%&%"," ")
+        p0.generoGrupo.text = "Género: "+listGrupos[p1].generoGrupo.replace("%&%"," ")
+        p0.ciudadGrupo.text = "Ciudad: "+listGrupos[p1].ciudad.replace("%&%"," ")
+        p0.plazasGrupo.text = "Buscan: "+listGrupos[p1].plazas.replace("%&%"," ")
     }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): gruposViewHolder {
