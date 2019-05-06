@@ -1,10 +1,15 @@
 package com.adri.musicianexchange;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -12,9 +17,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+
+
+import java.io.FileNotFoundException;
 
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -39,8 +54,17 @@ public class Main2Activity extends AppCompatActivity
         auth = FirebaseAuth.getInstance();
 
         final FirebaseUser user = auth.getCurrentUser();
+        String imageUrl = user.getPhotoUrl().toString();
 
+        ImageView imgUsuario = findViewById(R.id.imgUsuario);
         TextView txtUsuario= findViewById(R.id.txtUsuario);
+        TextView txtUsr= findViewById(R.id.txtUsr);
+        if(user.getPhotoUrl()!= null){
+            Glide.with(this).load(imageUrl).into(imgUsuario);
+        }
+        if(user.getDisplayName()!=null){
+            txtUsr.setText(String.valueOf(user.getDisplayName()));
+        }
         txtUsuario.setText(String.valueOf(user.getEmail()));
     }
 
@@ -72,6 +96,10 @@ public class Main2Activity extends AppCompatActivity
         if (id == R.id.action_settings) {
             auth.signOut();
             startActivity(new Intent(Main2Activity.this, loginActivity.class));
+            finish();
+        }
+        if (id == R.id.perfilMod) {
+            startActivity(new Intent(Main2Activity.this, perfilActivity.class));
             finish();
         }
 

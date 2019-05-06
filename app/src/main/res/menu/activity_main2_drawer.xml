@@ -10,17 +10,17 @@
                 android:title="@string/menu_home"/>
         <item
                 android:id="@+id/nav_conciertos"
-                android:icon="@drawable/fl_local_concierto"
+                android:icon="@mipmap/bl_concierto"
                 android:title="@string/menu_tools"/>
         <item android:title="Anuncios"/>
         <group>
             <item
                     android:id="@+id/nav_ventas"
-                    android:icon="@drawable/fl_local_venta"
+                    android:icon="@mipmap/bl_amplifier"
                     android:title="@string/menu_gallery"/>
             <item
                     android:id="@+id/nav_grupos"
-                    android:icon="@drawable/fl_radio"
+                    android:icon="@mipmap/bl_grupos"
                     android:title="@string/menu_slideshow"/>
         </group>
         <item android:title="Publicar"/>

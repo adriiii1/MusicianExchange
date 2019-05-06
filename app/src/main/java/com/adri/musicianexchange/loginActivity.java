@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import static com.adri.musicianexchange.R.layout.activity_login;
+
 public class loginActivity extends AppCompatActivity{
     private EditText inputEmail, inputPassword;
     private FirebaseAuth auth;
@@ -31,7 +33,7 @@ public class loginActivity extends AppCompatActivity{
             finish();
         }
 
-        setContentView(R.layout.activity_login);
+        setContentView(activity_login);
 
         inputEmail = findViewById(R.id.email);
         inputPassword = findViewById(R.id.password);
