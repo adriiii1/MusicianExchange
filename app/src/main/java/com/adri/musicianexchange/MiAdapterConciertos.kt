@@ -18,10 +18,10 @@ class MiAdapterConciertos(private val listConciertos: ArrayList<Concierto>) :
     }
 
     override fun onBindViewHolder(p0: ConciertosViewHolder, p1: Int) {
-        p0.grupo.text = listConciertos[p1].grupo.nombreGrupo.replace("%&%"," ")
+        p0.grupo.text = listConciertos[p1].grupo.replace("%&%"," ")
         p0.lugar.text = listConciertos[p1].lugar.replace("%&%"," ")
-        p0.fecha.text = listConciertos[p1].fecha.toString()
-        p0.precio.text = listConciertos[p1].precio.toString()
+        p0.fecha.text = listConciertos[p1].fecha
+        p0.precio.text = listConciertos[p1].precio.toString().replace("%&%"," ")
         p0.fotoConcierto.setImageURI(Uri.parse(listConciertos[p1].foto))
     }
 

@@ -34,6 +34,7 @@
         <activity android:name=".NuevoAnuncioGrupo"></activity>
         <activity android:name=".VentasActivity"></activity>
         <activity android:name=".PerfilActivity"></activity>
+        <activity android:name=".NuevoAnuncioConcierto"></activity>
     </application>
 
 </manifest>

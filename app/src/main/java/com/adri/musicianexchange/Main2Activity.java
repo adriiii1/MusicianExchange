@@ -124,7 +124,7 @@ public class Main2Activity extends AppCompatActivity
             startActivity(intent);
         }else if (id == R.id.nav_concierto) {
             //+ concierto
-            Intent intent = new Intent(this, NuevoAnuncioVenta.class);
+            Intent intent = new Intent(this, NuevoAnuncioConcierto.class);
             startActivity(intent);
         }else if (id == R.id.nav_playlist) {
             //+ playlist

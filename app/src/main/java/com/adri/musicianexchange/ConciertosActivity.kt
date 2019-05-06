@@ -31,9 +31,9 @@ class ConciertosActivity : AppCompatActivity(){
                 listConciertos.clear()
                 val gson= Gson()
                 for (objj  in dataSnapshot.children){
-                    val registro=objj.value
+                    val registro=objj.value.toString()
                     try {
-                        val reg:Concierto=gson.fromJson(registro.toString(),Concierto::class.java)
+                        val reg:Concierto=gson.fromJson(registro,Concierto::class.java)
                         listConciertos.add(reg)
                     }
                     catch (e: com.google.gson.JsonSyntaxException) {}

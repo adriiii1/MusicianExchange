@@ -13,17 +13,13 @@ import android.widget.ImageView
 import java.io.IOException
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.FirebaseStorage
-import android.widget.Toast
 import android.app.ProgressDialog
 import android.util.Log
 import com.google.android.gms.tasks.Continuation
 import java.util.*
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.storage.UploadTask
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
-import com.google.firebase.database.core.Tag
-import java.io.File
 
 
 class PerfilActivity : AppCompatActivity() {
