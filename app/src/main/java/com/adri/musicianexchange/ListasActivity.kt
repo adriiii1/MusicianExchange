@@ -7,34 +7,34 @@ import android.support.v7.widget.RecyclerView
 import com.google.firebase.database.*
 import com.google.gson.Gson
 
-class ventasActivity : AppCompatActivity(){
+class ListasActivity : AppCompatActivity(){
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var dbReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
-    var listVentas: ArrayList<Venta> = arrayListOf()
+    var listPlaylists: ArrayList<Playlists> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_listas)
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = miAdapterVentas(listVentas)
+        viewAdapter = MiAdapterPlaylists(listPlaylists)
 
         database = FirebaseDatabase.getInstance()
-        dbReference = database.getReference("Ventas")
+        dbReference = database.getReference("Playlists")
 
         val menuListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                listVentas.clear()
+                listPlaylists.clear()
                 val gson= Gson()
                 for (objj  in dataSnapshot.children){
-                    val registro=objj.getValue()
+                    val registro=objj.value
                     try {
-                        val reg:Venta=gson.fromJson(registro.toString(),Venta::class.java)
-                        listVentas.add(reg)
+                        val reg:Playlists=gson.fromJson(registro.toString(),Playlists::class.java)
+                        listPlaylists.add(reg)
                     }
                     catch (e: com.google.gson.JsonSyntaxException) {}
                 }
@@ -48,6 +48,6 @@ class ventasActivity : AppCompatActivity(){
                 println("loadPost:onCancelled ${databaseError.toException()}")
             }
         }
-        dbReference.child("venatas").addValueEventListener(menuListener)
+        dbReference.child("playlists").addValueEventListener(menuListener)
     }
 }

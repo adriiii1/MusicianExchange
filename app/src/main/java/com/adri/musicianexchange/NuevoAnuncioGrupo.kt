@@ -7,7 +7,7 @@ import com.google.firebase.database.DatabaseReference
 import kotlinx.android.synthetic.main.nuevo_anuncio_grupo.*
 import com.google.firebase.database.FirebaseDatabase
 
-class nuevoAnuncioGrupo : AppCompatActivity() {
+class NuevoAnuncioGrupo : AppCompatActivity() {
 
     private lateinit var dbReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
@@ -25,7 +25,7 @@ class nuevoAnuncioGrupo : AppCompatActivity() {
         }
     }
 
-    fun loadDatabase(firebaseData: DatabaseReference) {
+    private fun loadDatabase(firebaseData: DatabaseReference) {
         val grupo = Grupo(nombreGrupo = txtNom.text.toString().replace(" ","%&%") ,generoGrupo = txtgen.text.toString().replace(" ","%&%")
             ,ciudad = ciudadGrupo.text.toString().replace(" ","%&%"),plazas = txtPlazas.text.toString().replace(" ","%&%"))
         val key = firebaseData.child("grupos").push().key

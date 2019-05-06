@@ -7,34 +7,34 @@ import android.support.v7.widget.RecyclerView
 import com.google.firebase.database.*
 import com.google.gson.Gson
 
-class conciertosActivity : AppCompatActivity(){
+class GruposActivity : AppCompatActivity(){
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var dbReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
-    var listConciertos: ArrayList<Concierto> = arrayListOf()
+    var listGrupos: ArrayList<Grupo> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.conciertos_activity)
+        setContentView(R.layout.activity_listas)
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = miAdapterConciertos(listConciertos)
+        viewAdapter = MiAdapterGrupos(listGrupos)
 
         database = FirebaseDatabase.getInstance()
-        dbReference = database.getReference("Conciertos")
+        dbReference = database.getReference("Grupos")
 
         val menuListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                listConciertos.clear()
+                listGrupos.clear()
                 val gson= Gson()
                 for (objj  in dataSnapshot.children){
-                    val registro=objj.getValue()
+                    val registro=objj.value.toString()
                     try {
-                        val reg:Concierto=gson.fromJson(registro.toString(),Concierto::class.java)
-                        listConciertos.add(reg)
+                        val reg:Grupo=gson.fromJson(registro,Grupo::class.java)
+                        listGrupos.add(reg)
                     }
                     catch (e: com.google.gson.JsonSyntaxException) {}
                 }
@@ -48,6 +48,6 @@ class conciertosActivity : AppCompatActivity(){
                 println("loadPost:onCancelled ${databaseError.toException()}")
             }
         }
-        dbReference.child("conciertos").addValueEventListener(menuListener)
+        dbReference.child("grupos").addValueEventListener(menuListener)
     }
 }

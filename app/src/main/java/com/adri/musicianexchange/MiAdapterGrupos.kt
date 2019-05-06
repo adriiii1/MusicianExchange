@@ -5,29 +5,38 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import android.support.v7.widget.CardView
+import android.util.Log
 import android.view.View
+import android.widget.Toast
+import android.support.v4.content.ContextCompat.startActivity
+import android.content.Intent
 
-class miAdapterGrupos(private val listGrupos: ArrayList<Grupo>) :
 
-    RecyclerView.Adapter<miAdapterGrupos.gruposViewHolder>() {
+
+class MiAdapterGrupos(private val listGrupos: ArrayList<Grupo>) :
+
+    RecyclerView.Adapter<MiAdapterGrupos.GruposViewHolder>() {
 
     override fun getItemCount(): Int {
         return listGrupos.size
     }
 
-    override fun onBindViewHolder(p0: gruposViewHolder, p1: Int) {
+    override fun onBindViewHolder(p0: GruposViewHolder, p1: Int) {
         p0.nombreGrupo.text = listGrupos[p1].nombreGrupo.replace("%&%"," ")
-        p0.generoGrupo.text = "Género: "+listGrupos[p1].generoGrupo.replace("%&%"," ")
-        p0.ciudadGrupo.text = "Ciudad: "+listGrupos[p1].ciudad.replace("%&%"," ")
+        p0.generoGrupo.text = listGrupos[p1].generoGrupo.replace("%&%"," ")
+        p0.ciudadGrupo.text = listGrupos[p1].ciudad.replace("%&%"," ")
         p0.plazasGrupo.text = "Buscan: "+listGrupos[p1].plazas.replace("%&%"," ")
+        p0.cv.setOnClickListener{
+            p0.nombreGrupo.text="tocado chacho"
+        }
     }
 
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): gruposViewHolder {
-        val v = LayoutInflater.from(p0.getContext()).inflate(R.layout.grupoview, p0, false)
-        return gruposViewHolder(v)
+    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): GruposViewHolder {
+        val v = LayoutInflater.from(p0.context).inflate(R.layout.grupoview, p0, false)
+        return GruposViewHolder(v)
     }
 
-    class gruposViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class GruposViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         internal var cv: CardView = itemView.findViewById(R.id.cv)
         internal var nombreGrupo: TextView=itemView.findViewById(R.id.nombreGrupo)
         internal var generoGrupo: TextView= itemView.findViewById(R.id.generoGrupo)

@@ -16,15 +16,17 @@ import com.google.firebase.storage.FirebaseStorage
 import android.widget.Toast
 import android.app.ProgressDialog
 import android.util.Log
+import com.google.android.gms.tasks.Continuation
 import java.util.*
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.storage.UploadTask
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.database.core.Tag
+import java.io.File
 
 
-
-
-class perfilActivity : AppCompatActivity() {
+class PerfilActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var user: FirebaseUser
@@ -40,12 +42,12 @@ class perfilActivity : AppCompatActivity() {
         setContentView(R.layout.activity_perfil)
 
         auth = FirebaseAuth.getInstance()
-        user = auth.getCurrentUser()!!
+        user = auth.currentUser!!
 
         imagen= findViewById(R.id.imgUsr)
 
         storage = FirebaseStorage.getInstance()
-        storageReference = storage.getReference()
+        storageReference = storage.reference
 
         btnImagen.setOnClickListener {
             chooseImage()
@@ -53,18 +55,27 @@ class perfilActivity : AppCompatActivity() {
 
         btnGuardar.setOnClickListener {
             uploadImage()
-            val profileUpdates = UserProfileChangeRequest.Builder()
-                .setDisplayName(txt_nomUser.text.toString()).setPhotoUri(Uri.parse(urlFoto)).build()
-            user.updateProfile(profileUpdates)
-
+            var profileUpdates = UserProfileChangeRequest.Builder()
+                .setDisplayName(txt_nomUser.text.toString()).build()
+            user.updateProfile(profileUpdates).addOnCompleteListener {
+                if(it.isSuccessful){
+                    Log.d("ProfileUpdate","El perfil se ha actualizado")
+                }
+            }
         }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, Main2Activity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun chooseImage() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST)
+        startActivityForResult(Intent.createChooser(intent, "Selecciona la imágen"), PICK_IMAGE_REQUEST)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -85,31 +96,34 @@ class perfilActivity : AppCompatActivity() {
     private fun uploadImage() {
         if (filePath != null) {
             val progressDialog = ProgressDialog(this)
-            progressDialog.setTitle("Uploading...")
+            progressDialog.setTitle("Subiendo...")
             progressDialog.show()
+            val ref = storageReference.child("profileImages/"+UUID.randomUUID().toString())
+            var uploadTask = ref.putFile(filePath!!)
 
-            val ref = storageReference.child("images/" + UUID.randomUUID().toString())
-            ref.putFile(filePath!!)
-                .addOnSuccessListener {
-                    ref.downloadUrl.addOnSuccessListener {
-                        ref.metadata.addOnSuccessListener {
-                            urlFoto = it.path
-                        }
-                        Log.d(urlFoto,"AAAA")
+            uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let {
+                        throw it
                     }
-                    progressDialog.dismiss()
-                    Toast.makeText(this, "Uploaded", Toast.LENGTH_SHORT).show()
-
                 }
-                .addOnFailureListener { e ->
+                return@Continuation ref.downloadUrl
+            }).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
                     progressDialog.dismiss()
-                    Toast.makeText(this, "Failed " + e.message, Toast.LENGTH_SHORT).show()
-                }
-                .addOnProgressListener { taskSnapshot ->
-                    val progress = 100.0 * taskSnapshot.bytesTransferred / taskSnapshot
-                        .totalByteCount
-                    progressDialog.setMessage("Uploaded " + progress.toInt() + "%")
+                    val profileUpdates = UserProfileChangeRequest.Builder()
+                        .setPhotoUri(Uri.parse(task.result.toString())).build()
+                    user.updateProfile(profileUpdates).addOnCompleteListener {
+                        if(it.isSuccessful){
+                            Log.d("ProfileUpdate","El perfil se ha actualizado")
+                        }
+                    }
+                }else{
+                    task.exception?.let {
+                        throw it
+                    }
                 }
             }
         }
     }
+}

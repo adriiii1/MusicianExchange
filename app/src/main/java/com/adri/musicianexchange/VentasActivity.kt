@@ -7,34 +7,34 @@ import android.support.v7.widget.RecyclerView
 import com.google.firebase.database.*
 import com.google.gson.Gson
 
-class gruposActivity : AppCompatActivity(){
+class VentasActivity : AppCompatActivity(){
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var dbReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
-    var listGrupos: ArrayList<Grupo> = arrayListOf()
+    var listVentas: ArrayList<Venta> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_listas)
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = miAdapterGrupos(listGrupos)
+        viewAdapter = MiAdapterVentas(listVentas)
 
         database = FirebaseDatabase.getInstance()
-        dbReference = database.getReference("Grupos")
+        dbReference = database.getReference("Ventas")
 
         val menuListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                listGrupos.clear()
+                listVentas.clear()
                 val gson= Gson()
                 for (objj  in dataSnapshot.children){
-                    val registro=objj.getValue().toString()
+                    val registro=objj.value
                     try {
-                        val reg:Grupo=gson.fromJson(registro,Grupo::class.java)
-                        listGrupos.add(reg)
+                        val reg:Venta=gson.fromJson(registro.toString(),Venta::class.java)
+                        listVentas.add(reg)
                     }
                     catch (e: com.google.gson.JsonSyntaxException) {}
                 }
@@ -48,6 +48,6 @@ class gruposActivity : AppCompatActivity(){
                 println("loadPost:onCancelled ${databaseError.toException()}")
             }
         }
-        dbReference.child("grupos").addValueEventListener(menuListener)
+        dbReference.child("ventas").addValueEventListener(menuListener)
     }
 }

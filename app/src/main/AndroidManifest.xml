@@ -4,7 +4,7 @@
           package="com.adri.musicianexchange">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -26,14 +26,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".signupActivity"></activity>
-        <activity android:name=".nuevoAnuncioVenta"></activity>
-        <activity android:name=".listasActivity"></activity>
-        <activity android:name=".conciertosActivity"></activity>
+        <activity android:name=".NuevoAnuncioVenta"></activity>
+        <activity android:name=".ListasActivity"></activity>
+        <activity android:name=".ConciertosActivity"></activity>
         <activity android:name=".resetPasswordActivity"></activity>
-        <activity android:name=".gruposActivity"></activity>
-        <activity android:name=".nuevoAnuncioGrupo"></activity>
-        <activity android:name=".ventasActivity"></activity>
-        <activity android:name=".perfilActivity"></activity>
+        <activity android:name=".GruposActivity"></activity>
+        <activity android:name=".NuevoAnuncioGrupo"></activity>
+        <activity android:name=".VentasActivity"></activity>
+        <activity android:name=".PerfilActivity"></activity>
     </application>
 
 </manifest>

@@ -1,12 +1,7 @@
 package com.adri.musicianexchange;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
@@ -20,16 +15,8 @@ import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
-
-
-import java.io.FileNotFoundException;
 
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -54,8 +41,12 @@ public class Main2Activity extends AppCompatActivity
         auth = FirebaseAuth.getInstance();
 
         final FirebaseUser user = auth.getCurrentUser();
-        String imageUrl = user.getPhotoUrl().toString();
-
+        String imageUrl = null;
+        if (user.getPhotoUrl() != null) {
+            imageUrl = user.getPhotoUrl().toString();
+        }else{
+            Log.d("UserProfilePic","No hay foto");
+        }
         ImageView imgUsuario = findViewById(R.id.imgUsuario);
         TextView txtUsuario= findViewById(R.id.txtUsuario);
         TextView txtUsr= findViewById(R.id.txtUsr);
@@ -63,7 +54,7 @@ public class Main2Activity extends AppCompatActivity
             Glide.with(this).load(imageUrl).into(imgUsuario);
         }
         if(user.getDisplayName()!=null){
-            txtUsr.setText(String.valueOf(user.getDisplayName()));
+            txtUsr.setText((user.getDisplayName()));
         }
         txtUsuario.setText(String.valueOf(user.getEmail()));
     }
@@ -80,16 +71,12 @@ public class Main2Activity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main2, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -99,7 +86,7 @@ public class Main2Activity extends AppCompatActivity
             finish();
         }
         if (id == R.id.perfilMod) {
-            startActivity(new Intent(Main2Activity.this, perfilActivity.class));
+            startActivity(new Intent(Main2Activity.this, PerfilActivity.class));
             finish();
         }
 
@@ -113,35 +100,35 @@ public class Main2Activity extends AppCompatActivity
 
         if (id == R.id.nav_playlists) {
             //Listas de reproducción
-            Intent intent = new Intent(this, listasActivity.class);
+            Intent intent = new Intent(this, ListasActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_ventas) {
             //Anuncios de venta
-            Intent intent = new Intent(this, ventasActivity.class);
+            Intent intent = new Intent(this, VentasActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_grupos) {
             //Anuncios de grupos
-            Intent intent = new Intent(this, gruposActivity.class);
+            Intent intent = new Intent(this, GruposActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_conciertos) {
             //Conciertos
-            Intent intent = new Intent(this, conciertosActivity.class);
+            Intent intent = new Intent(this, ConciertosActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_grupo) {
             //+ anuncio de grupo
-            Intent intent = new Intent(this, nuevoAnuncioGrupo.class);
+            Intent intent = new Intent(this, NuevoAnuncioGrupo.class);
             startActivity(intent);
         } else if (id == R.id.nav_venta) {
             //+ anuncio de venta
-            Intent intent = new Intent(this, nuevoAnuncioVenta.class);
+            Intent intent = new Intent(this, NuevoAnuncioVenta.class);
             startActivity(intent);
         }else if (id == R.id.nav_concierto) {
             //+ concierto
-            Intent intent = new Intent(this, nuevoAnuncioVenta.class);
+            Intent intent = new Intent(this, NuevoAnuncioVenta.class);
             startActivity(intent);
         }else if (id == R.id.nav_playlist) {
             //+ playlist
-            Intent intent = new Intent(this, nuevoAnuncioVenta.class);
+            Intent intent = new Intent(this, NuevoAnuncioVenta.class);
             startActivity(intent);
         }
 
