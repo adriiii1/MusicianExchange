@@ -1,6 +1,5 @@
 package com.adri.musicianexchange
 
-import android.net.Uri
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,6 +7,7 @@ import android.widget.TextView
 import android.support.v7.widget.CardView
 import android.view.View
 import android.widget.ImageView
+import com.bumptech.glide.Glide
 
 class MiAdapterVentas(private val listVentas: ArrayList<Venta>) :
 
@@ -21,8 +21,14 @@ class MiAdapterVentas(private val listVentas: ArrayList<Venta>) :
         p0.objeto.text = listVentas[p1].objeto.replace("%&%"," ")
         p0.tipo.text = listVentas[p1].tipo.replace("%&%"," ")
         p0.ciudad.text = listVentas[p1].ciudad.replace("%&%"," ")
-        p0.precio.text = listVentas[p1].precio.toString()
-        p0.fotoObjeto.setImageURI(Uri.parse(listVentas[p1].fotoObjeto))
+        p0.precio.text = listVentas[p1].precio
+        p0.precio.text = p0.precio.text.toString() + "€"
+        var url=listVentas[p1].fotoObjeto
+        url=url.replace("igual","=").replace("barra","/").replace("points",":")
+        Glide.with(p0.cv.context).load(url).into(p0.fotoObjeto)
+        p0.cv.setOnClickListener {
+
+        }
     }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): VentasViewHolder {

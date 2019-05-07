@@ -46,7 +46,7 @@ class NuevoAnuncioVenta : AppCompatActivity() {
         stReference = storage.reference
 
         btInsVenta.setOnClickListener {
-            loadDatabase(dbReference)
+            loadDatabase()
         }
 
         btSelFoto.setOnClickListener {
@@ -54,13 +54,8 @@ class NuevoAnuncioVenta : AppCompatActivity() {
         }
     }
 
-    private fun loadDatabase(firebaseData: DatabaseReference) {
+    private fun loadDatabase() {
         uploadImageFile()
-        val venta = Venta(objeto = txtObjeto.text.toString().replace(" ","%&%"), ciudad = txtCiudad.text.toString().replace(" ","%&%")
-            , precio = txtPrecio.text.toString().toDouble(),tipo = txtTipo.text.toString().replace(" ","%&%"),fotoObjeto = urlFotoObjeto)
-        val key = firebaseData.child("ventas").push().key
-        firebaseData.child("ventas").child(key!!).setValue(venta)
-        Toast.makeText(this,"Anuncio publicado con éxito",Toast.LENGTH_SHORT)
     }
 
     private fun chooseFile() {
@@ -88,6 +83,12 @@ class NuevoAnuncioVenta : AppCompatActivity() {
                 if (task.isSuccessful) {
                     progressDialog.dismiss()
                     urlFotoObjeto = task.result.toString()
+                    urlFotoObjeto = urlFotoObjeto.replace("/","barra").replace("=","igual").replace(":","points")
+                    val venta = Venta(objeto = txtObjeto.text.toString().replace(" ","%&%"), ciudad = txtCiudad.text.toString().replace(" ","%&%")
+                        , precio = txtPrecio.text.toString(),tipo = txtTipo.text.toString().replace(" ","%&%"),fotoObjeto = urlFotoObjeto)
+                    val key = dbReference.child("ventas").push().key
+                    dbReference.child("ventas").child(key!!).setValue(venta)
+                    Toast.makeText(this,"Anuncio publicado con éxito",Toast.LENGTH_SHORT)
                 }else{
                     task.exception?.let {
                         throw it
@@ -101,12 +102,6 @@ class NuevoAnuncioVenta : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 12345 && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
             filePath = data.data
-            try {
-                val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, filePath) as Bitmap
-                previewImage!!.setImageBitmap(bitmap)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
         }
     }
 }

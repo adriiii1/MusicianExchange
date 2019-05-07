@@ -18,8 +18,8 @@
         >
 
             <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
                     android:id="@+id/fotoConcierto"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/fecha"
                     android:layout_toRightOf="@+id/fotoConcierto"
-                    android:layout_below="@id/grupo"
+                    android:layout_alignParentBottom="true"
                     android:textSize="16sp"
             />
 
@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/precio"
                     android:layout_alignParentRight="true"
-                    android:layout_below="@+id/lugarConcierto"
+                    android:layout_alignParentBottom="true"
                     android:textSize="16sp"
             />
 

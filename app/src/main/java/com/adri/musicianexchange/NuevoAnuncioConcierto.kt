@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
@@ -25,7 +26,6 @@ class NuevoAnuncioConcierto : AppCompatActivity() {
     private lateinit var storage: FirebaseStorage
 
     private var filePath: Uri? = null
-    private var urlFotoConcierto:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +41,7 @@ class NuevoAnuncioConcierto : AppCompatActivity() {
         }
 
         btInsConcierto.setOnClickListener {
-            loadDatabase(dbReference)
+            loadDatabase()
         }
 
         btSelCartel.setOnClickListener {
@@ -51,19 +51,14 @@ class NuevoAnuncioConcierto : AppCompatActivity() {
 
     private fun showDatePickerDialog() {
         var fragment = DatePickerFragment.newInstance { view, year, month, dayOfMonth ->
-            val selectedDate: String = dayOfMonth.toString()+"/"+(month+1)+"/"+year
+            val selectedDate: String = dayOfMonth.toString()+"-"+(month+1)+"-"+year
             txtFecha.setText(selectedDate)
         }
         fragment.show(this.supportFragmentManager,"Fecha")
     }
 
-    private fun loadDatabase(firebaseData: DatabaseReference) {
-        uploadImageFile()
-        val concierto=Concierto(grupo = txtGrupoConcierto.text.toString().replace(" ","%&%"),lugar = txtLugar.text.toString().replace(" ","%&%"),
-            foto = urlFotoConcierto,fecha = txtFecha.text.toString(),precio = Integer.parseInt(txtPrecioConcierto.text.toString().replace(" ","%&%")))
-        val key = firebaseData.child("conciertos").push().key
-        firebaseData.child("conciertos").child(key!!).setValue(concierto)
-        Toast.makeText(this,"Concierto publicado con éxito",Toast.LENGTH_SHORT)
+    private fun loadDatabase() {
+        uploadImageFile(dbReference)
     }
 
     private fun chooseFile() {
@@ -73,7 +68,7 @@ class NuevoAnuncioConcierto : AppCompatActivity() {
         startActivityForResult(Intent.createChooser(intent, "Selecciona la imágen"), 12345)
     }
 
-    private fun uploadImageFile() {
+    private fun uploadImageFile(firebaseData: DatabaseReference) {
         if (filePath != null) {
             val progressDialog = ProgressDialog(this)
             progressDialog.setTitle("Subiendo...")
@@ -90,7 +85,13 @@ class NuevoAnuncioConcierto : AppCompatActivity() {
             }).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     progressDialog.dismiss()
-                    urlFotoConcierto = task.result.toString()
+                    var urlFotoConcierto:String = task.result.toString()
+                    urlFotoConcierto=urlFotoConcierto.replace("/","barra").replace("=","igual").replace(":","points")
+                    val concierto=Concierto(foto = urlFotoConcierto,grupo = txtGrupoConcierto.text.toString().replace(" ","%&%"),lugar = txtLugar.text.toString().replace(" ","%&%"),
+                        fecha = txtFecha.text.toString(),precio = txtPrecioConcierto.text.toString().replace(" ","%&%"))
+                    val key = firebaseData.child("conciertos").push().key
+                    firebaseData.child("conciertos").child(key!!).setValue(concierto)
+                    Toast.makeText(this,"Anuncio publicado con éxito",Toast.LENGTH_SHORT)
                 }else{
                     task.exception?.let {
                         throw it
@@ -99,6 +100,8 @@ class NuevoAnuncioConcierto : AppCompatActivity() {
             }
         }
     }
+
+    //https://firebasestorage.googleapis.com/v0/b/musician-exchange.appspot.com/o/conciertosImages%2F3695a213-92f7-46e3-898b-12bda415da58?alt=media&token=83aef141-61b7-4701-9075-f1cb293fac17
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
         super.onActivityResult(requestCode, resultCode, data)

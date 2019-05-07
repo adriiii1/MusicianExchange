@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import com.google.firebase.database.*
 import com.google.gson.Gson
 
@@ -38,7 +39,7 @@ class ConciertosActivity : AppCompatActivity(){
                     }
                     catch (e: com.google.gson.JsonSyntaxException) {}
                 }
-                recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
+                recyclerView = findViewById<RecyclerView>(R.id.recyclerViewConciertos).apply {
                     setHasFixedSize(true)
                     layoutManager = viewManager
                     adapter = viewAdapter

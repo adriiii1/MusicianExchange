@@ -18,7 +18,7 @@ class VentasActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_listas)
+        setContentView(R.layout.activity_ventas)
 
         viewManager = LinearLayoutManager(this)
         viewAdapter = MiAdapterVentas(listVentas)
@@ -38,7 +38,7 @@ class VentasActivity : AppCompatActivity(){
                     }
                     catch (e: com.google.gson.JsonSyntaxException) {}
                 }
-                recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
+                recyclerView = findViewById<RecyclerView>(R.id.recyclerViewVentas).apply {
                     setHasFixedSize(true)
                     layoutManager = viewManager
                     adapter = viewAdapter
