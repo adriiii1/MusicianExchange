@@ -6,10 +6,10 @@ import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -88,7 +88,7 @@ class NuevoAnuncioConcierto : AppCompatActivity() {
                     var urlFotoConcierto:String = task.result.toString()
                     urlFotoConcierto=urlFotoConcierto.replace("/","barra").replace("=","igual").replace(":","points")
                     val concierto=Concierto(foto = urlFotoConcierto,grupo = txtGrupoConcierto.text.toString().replace(" ","%&%"),lugar = txtLugar.text.toString().replace(" ","%&%"),
-                        fecha = txtFecha.text.toString(),precio = txtPrecioConcierto.text.toString().replace(" ","%&%"))
+                        fecha = txtFecha.text.toString(),precio = txtPrecioConcierto.text.toString().replace(" ","%&%"),userId = FirebaseAuth.getInstance().currentUser!!.uid)
                     val key = firebaseData.child("conciertos").push().key
                     firebaseData.child("conciertos").child(key!!).setValue(concierto)
                     Toast.makeText(this,"Anuncio publicado con éxito",Toast.LENGTH_SHORT)

@@ -21,7 +21,7 @@ class VentasActivity : AppCompatActivity(){
         setContentView(R.layout.activity_ventas)
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = MiAdapterVentas(listVentas)
+        viewAdapter = MiAdapterVentas(listVentas,this.supportFragmentManager)
 
         database = FirebaseDatabase.getInstance()
         dbReference = database.getReference("Ventas")

@@ -5,5 +5,6 @@ data class Concierto(
     val grupo: String = "",
     val lugar: String = "",
     val fecha: String ="",
-    val precio: String = ""
+    val precio: String = "",
+    val userId: String = ""
 )
