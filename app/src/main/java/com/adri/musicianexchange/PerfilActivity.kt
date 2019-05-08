@@ -31,7 +31,6 @@ class PerfilActivity : AppCompatActivity() {
     private var filePath: Uri? = null
     private lateinit var storage: FirebaseStorage
     private lateinit var storageReference: StorageReference
-    private var urlFoto: String =""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
