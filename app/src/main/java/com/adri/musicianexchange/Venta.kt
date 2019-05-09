@@ -5,5 +5,7 @@ data class Venta(
     val precio: String = "",
     val ciudad: String = "",
     val tipo: String = "",
-    val fotoObjeto: String = ""
+    val fotoObjeto: String = "",
+    val userId: String = "",
+    val keyId: String = ""
 )

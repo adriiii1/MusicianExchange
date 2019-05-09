@@ -6,33 +6,33 @@
 
     <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" tools:srcCompat="@tools:sample/backgrounds/scenic[12]"
-            android:id="@+id/imgGrandeConcierto"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
+            android:layout_height="match_parent" tools:srcCompat="@tools:sample/backgrounds/scenic[18]"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/imgGrandeVenta"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtConciertoGrupo"
+            android:id="@+id/txtVentaObjeto"
             android:layout_marginLeft="40dp"
             android:layout_gravity="left|center_vertical" android:textSize="24sp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtConciertoLugar"
+            android:id="@+id/txtVentaTipo"
             android:layout_marginRight="40dp"
             android:layout_gravity="right|center_vertical" android:textSize="24sp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtConciertoFecha"
+            android:id="@+id/txtVentaCiudad"
             android:layout_marginLeft="40dp"
             android:layout_marginBottom="40dp"
             android:layout_gravity="left|bottom" android:textSize="24sp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtConciertoPrecio"
+            android:id="@+id/txtVentaPrecio"
             android:layout_marginRight="40dp"
             android:layout_marginBottom="40dp"
             android:layout_gravity="right|bottom" android:textSize="24sp"/>

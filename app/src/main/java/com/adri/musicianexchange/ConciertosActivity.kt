@@ -22,7 +22,7 @@ class ConciertosActivity : AppCompatActivity(){
         setContentView(R.layout.conciertos_activity)
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = MiAdapterConciertos(listConciertos,this.supportFragmentManager)
+        viewAdapter = MiAdapterConciertos(listConciertos)
 
         database = FirebaseDatabase.getInstance()
         dbReference = database.getReference("Conciertos")

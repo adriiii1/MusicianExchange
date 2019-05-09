@@ -2,6 +2,7 @@ package com.adri.musicianexchange
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.FragmentManager
 import android.support.v7.widget.RecyclerView
@@ -33,8 +34,15 @@ class MiAdapterVentas(private val listVentas: ArrayList<Venta>,private val sfm: 
         url=url.replace("igual","=").replace("barra","/").replace("points",":")
         Glide.with(p0.cv.context).load(url).into(p0.fotoObjeto)
         p0.cv.setOnClickListener {
-            val frag=FragmentImagen.newInstance(url)
-            frag.show(sfm,"Detalle")
+            val intent= Intent(p0.cv.context,VentaDetalle::class.java)
+            var bun=Bundle()
+            bun.putString("objeto",p0.objeto.text.toString())
+            bun.putString("tipo",p0.tipo.text.toString())
+            bun.putString("ciudad",p0.ciudad.text.toString())
+            bun.putString("precio",p0.precio.text.toString())
+            bun.putString("url",url)
+            intent.putExtras(bun)
+            p0.cv.context.startActivity(intent)
         }
     }
 

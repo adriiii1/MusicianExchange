@@ -1,28 +1,24 @@
+@file:Suppress("DEPRECATION")
+
 package com.adri.musicianexchange
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
-import android.widget.ImageView
 import android.widget.Toast
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
-import kotlinx.android.synthetic.main.nuevo_anuncio_grupo.*
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.nuevo_anuncio_venta.*
-import java.io.IOException
 import java.util.*
 
 class NuevoAnuncioVenta : AppCompatActivity() {
@@ -33,7 +29,6 @@ class NuevoAnuncioVenta : AppCompatActivity() {
     private lateinit var storage: FirebaseStorage
 
     private var filePath: Uri? = null
-    private var previewImage: ImageView? = null
     private var urlFotoObjeto:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,13 +60,14 @@ class NuevoAnuncioVenta : AppCompatActivity() {
         startActivityForResult(Intent.createChooser(intent, "Selecciona la imágen"), 12345)
     }
 
+    @SuppressLint("ShowToast")
     private fun uploadImageFile() {
         if (filePath != null) {
             val progressDialog = ProgressDialog(this)
             progressDialog.setTitle("Subiendo...")
             progressDialog.show()
             val ref = stReference.child("ventasImages/"+ UUID.randomUUID().toString())
-            var uploadTask = ref.putFile(filePath!!)
+            val uploadTask = ref.putFile(filePath!!)
             uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
                 if (!task.isSuccessful) {
                     task.exception?.let {
@@ -84,9 +80,10 @@ class NuevoAnuncioVenta : AppCompatActivity() {
                     progressDialog.dismiss()
                     urlFotoObjeto = task.result.toString()
                     urlFotoObjeto = urlFotoObjeto.replace("/","barra").replace("=","igual").replace(":","points")
-                    val venta = Venta(objeto = txtObjeto.text.toString().replace(" ","%&%"), ciudad = txtCiudad.text.toString().replace(" ","%&%")
-                        , precio = txtPrecio.text.toString(),tipo = txtTipo.text.toString().replace(" ","%&%"),fotoObjeto = urlFotoObjeto)
                     val key = dbReference.child("ventas").push().key
+                    val venta = Venta(objeto = txtObjeto.text.toString().replace(" ","%&%"), ciudad = txtCiudad.text.toString().replace(" ","%&%")
+                        , precio = txtPrecio.text.toString(),tipo = txtTipo.text.toString().replace(" ","%&%"),fotoObjeto = urlFotoObjeto
+                        ,userId = FirebaseAuth.getInstance().currentUser!!.uid,keyId = key.toString())
                     dbReference.child("ventas").child(key!!).setValue(venta)
                     Toast.makeText(this,"Anuncio publicado con éxito",Toast.LENGTH_SHORT)
                 }else{

@@ -3,6 +3,7 @@ package com.adri.musicianexchange
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import kotlinx.android.synthetic.main.nuevo_anuncio_grupo.*
 import com.google.firebase.database.FirebaseDatabase
@@ -26,9 +27,10 @@ class NuevoAnuncioGrupo : AppCompatActivity() {
     }
 
     private fun loadDatabase(firebaseData: DatabaseReference) {
-        val grupo = Grupo(nombreGrupo = txtNom.text.toString().replace(" ","%&%") ,generoGrupo = txtgen.text.toString().replace(" ","%&%")
-            ,ciudad = ciudadGrupo.text.toString().replace(" ","%&%"),plazas = txtPlazas.text.toString().replace(" ","%&%"))
         val key = firebaseData.child("grupos").push().key
+        val grupo = Grupo(nombreGrupo = txtNom.text.toString().replace(" ","%&%") ,generoGrupo = txtgen.text.toString().replace(" ","%&%")
+            ,ciudad = ciudadGrupo.text.toString().replace(" ","%&%"),plazas = txtPlazas.text.toString().replace(" ","%&%")
+            ,userId = FirebaseAuth.getInstance().currentUser!!.uid,keyId = key.toString())
         firebaseData.child("grupos").child(key!!).setValue(grupo)
         Toast.makeText(this,"Anuncio publicado con éxito",Toast.LENGTH_SHORT)
     }

@@ -36,6 +36,7 @@
         <activity android:name=".PerfilActivity"></activity>
         <activity android:name=".NuevoAnuncioConcierto"></activity>
         <activity android:name=".ConciertoDetalle"></activity>
+        <activity android:name=".VentaDetalle"></activity>
     </application>
 
 </manifest>

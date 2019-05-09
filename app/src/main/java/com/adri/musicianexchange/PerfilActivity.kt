@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.adri.musicianexchange
 
 import android.app.Activity
@@ -26,8 +28,8 @@ class PerfilActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var user: FirebaseUser
-    val PICK_IMAGE_REQUEST = 0
-    lateinit var imagen: ImageView
+    private val pickImageRequest = 0
+    private lateinit var imagen: ImageView
     private var filePath: Uri? = null
     private lateinit var storage: FirebaseStorage
     private lateinit var storageReference: StorageReference
@@ -50,7 +52,7 @@ class PerfilActivity : AppCompatActivity() {
 
         btnGuardar.setOnClickListener {
             uploadImage()
-            var profileUpdates = UserProfileChangeRequest.Builder()
+            val profileUpdates = UserProfileChangeRequest.Builder()
                 .setDisplayName(txt_nomUser.text.toString()).build()
             user.updateProfile(profileUpdates).addOnCompleteListener {
                 if(it.isSuccessful){
@@ -70,12 +72,12 @@ class PerfilActivity : AppCompatActivity() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Selecciona la imágen"), PICK_IMAGE_REQUEST)
+        startActivityForResult(Intent.createChooser(intent, "Selecciona la imágen"), pickImageRequest)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK
+        if (requestCode == pickImageRequest && resultCode == Activity.RESULT_OK
             && data != null && data.data != null
         ) {
             filePath = data.data
@@ -94,7 +96,7 @@ class PerfilActivity : AppCompatActivity() {
             progressDialog.setTitle("Subiendo...")
             progressDialog.show()
             val ref = storageReference.child("profileImages/"+UUID.randomUUID().toString())
-            var uploadTask = ref.putFile(filePath!!)
+            val uploadTask = ref.putFile(filePath!!)
 
             uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
                 if (!task.isSuccessful) {
