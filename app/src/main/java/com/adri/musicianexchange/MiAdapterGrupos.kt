@@ -1,5 +1,7 @@
 package com.adri.musicianexchange
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +12,7 @@ import android.view.View
 import android.widget.Toast
 import android.support.v4.content.ContextCompat.startActivity
 import android.content.Intent
-
+import com.google.firebase.auth.FirebaseAuth
 
 
 class MiAdapterGrupos(private val listGrupos: ArrayList<Grupo>) :
@@ -27,7 +29,20 @@ class MiAdapterGrupos(private val listGrupos: ArrayList<Grupo>) :
         p0.ciudadGrupo.text = listGrupos[p1].ciudad.replace("%&%"," ")
         p0.plazasGrupo.text = "Buscan: "+listGrupos[p1].plazas.replace("%&%"," ")
         p0.cv.setOnClickListener{
-            p0.nombreGrupo.text="tocado chacho"
+            if(FirebaseAuth.getInstance().currentUser!!.uid!=listGrupos[p1].userId){
+                val alertDialog = AlertDialog.Builder(p0.cv.context)
+                    .setTitle("Contactar")
+                    .setMessage("Quieres contactar al anunciante?")
+                    .setPositiveButton("Sí") { dialog, i ->
+                        val intent=Intent(p0.cv.context,ChatActivity::class.java)
+                        p0.cv.context.startActivity(intent)
+                    }
+                    .setNegativeButton("No") { dialogInterface, i ->
+                        dialogInterface.cancel()
+                    }
+
+                alertDialog.show()
+            }
         }
     }
 

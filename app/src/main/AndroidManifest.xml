@@ -13,6 +13,8 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.Design"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ChatActivity">
+        </activity>
         <activity
                 android:name=".Main2Activity"
                 android:label="@string/title_activity_main2"
@@ -25,18 +27,18 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".signupActivity"></activity>
-        <activity android:name=".NuevoAnuncioVenta"></activity>
-        <activity android:name=".ListasActivity"></activity>
-        <activity android:name=".ConciertosActivity"></activity>
-        <activity android:name=".resetPasswordActivity"></activity>
-        <activity android:name=".GruposActivity"></activity>
-        <activity android:name=".NuevoAnuncioGrupo"></activity>
-        <activity android:name=".VentasActivity"></activity>
-        <activity android:name=".PerfilActivity"></activity>
-        <activity android:name=".NuevoAnuncioConcierto"></activity>
-        <activity android:name=".ConciertoDetalle"></activity>
-        <activity android:name=".VentaDetalle"></activity>
+        <activity android:name=".signupActivity"/>
+        <activity android:name=".NuevoAnuncioVenta"/>
+        <activity android:name=".ListasActivity"/>
+        <activity android:name=".ConciertosActivity"/>
+        <activity android:name=".resetPasswordActivity"/>
+        <activity android:name=".GruposActivity"/>
+        <activity android:name=".NuevoAnuncioGrupo"/>
+        <activity android:name=".VentasActivity"/>
+        <activity android:name=".PerfilActivity"/>
+        <activity android:name=".NuevoAnuncioConcierto"/>
+        <activity android:name=".ConciertoDetalle"/>
+        <activity android:name=".VentaDetalle"/>
     </application>
 
 </manifest>
