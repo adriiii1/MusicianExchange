@@ -34,13 +34,13 @@ class MiAdapterGrupos(private val listGrupos: ArrayList<Grupo>) :
                     .setTitle("Contactar")
                     .setMessage("Quieres contactar al anunciante?")
                     .setPositiveButton("Sí") { dialog, i ->
-                        val intent=Intent(p0.cv.context,ChatActivity::class.java)
+                        val intent = Intent(p0.cv.context,ChatActivity::class.java)
+                        intent.putExtra("user",listGrupos[p1].userId)
                         p0.cv.context.startActivity(intent)
                     }
                     .setNegativeButton("No") { dialogInterface, i ->
                         dialogInterface.cancel()
                     }
-
                 alertDialog.show()
             }
         }
@@ -53,9 +53,9 @@ class MiAdapterGrupos(private val listGrupos: ArrayList<Grupo>) :
 
     class GruposViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         internal var cv: CardView = itemView.findViewById(R.id.cv)
-        internal var nombreGrupo: TextView=itemView.findViewById(R.id.nombreGrupo)
-        internal var generoGrupo: TextView= itemView.findViewById(R.id.generoGrupo)
-        internal var ciudadGrupo: TextView= itemView.findViewById(R.id.ciudadGrupo)
-        internal var plazasGrupo: TextView= itemView.findViewById(R.id.plazasGrupo)
+        internal var nombreGrupo: TextView = itemView.findViewById(R.id.nombreGrupo)
+        internal var generoGrupo: TextView = itemView.findViewById(R.id.generoGrupo)
+        internal var ciudadGrupo: TextView = itemView.findViewById(R.id.ciudadGrupo)
+        internal var plazasGrupo: TextView = itemView.findViewById(R.id.plazasGrupo)
     }
 }
