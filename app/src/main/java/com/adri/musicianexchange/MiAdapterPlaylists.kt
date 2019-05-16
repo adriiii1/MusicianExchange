@@ -8,10 +8,15 @@ import android.widget.TextView
 import android.support.v7.widget.CardView
 import android.view.View
 import android.widget.ImageView
+import com.spotify.android.appremote.api.SpotifyAppRemote
 
 class MiAdapterPlaylists(private val listPlaylists: ArrayList<Playlists>) :
 
     RecyclerView.Adapter<MiAdapterPlaylists.PlaylistsViewHolder>() {
+
+    private val CLIENT_ID = "your_client_id"
+    private val REDIRECT_URI = "http://com.yourdomain.yourapp/callback"
+    private var mSpotifyAppRemote: SpotifyAppRemote? = null
 
     override fun getItemCount(): Int {
         return listPlaylists.size
@@ -21,6 +26,9 @@ class MiAdapterPlaylists(private val listPlaylists: ArrayList<Playlists>) :
         p0.nombrePlaylist.text = listPlaylists[p1].nombrePlaylist.replace("%&%"," ")
         p0.urlPlaylist.text = listPlaylists[p1].urlPlaylists
         p0.fotoPlaylist.setImageURI(Uri.parse(listPlaylists[p1].fotoPlaylists))
+        p0.cv.setOnClickListener {
+            mSpotifyAppRemote!!.playerApi.play(listPlaylists[p1].urlPlaylists)
+        }
     }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): PlaylistsViewHolder {

@@ -46,7 +46,8 @@ class ChatActivity : AppCompatActivity() {
             val mensaje = strPrepare(txtMensaje.text.toString())
             if(mensaje != ""){
                 val kei = conver.push().key
-                val mensahe = Mensaje(emisor = FirebaseAuth.getInstance().currentUser!!.displayName!!,cuerpo = mensaje,hora = System.currentTimeMillis())
+                val mensahe = Mensaje(emisor = FirebaseAuth.getInstance().currentUser!!.displayName!!,cuerpo = mensaje
+                    ,hora = System.currentTimeMillis())
                 conver.child(kei!!).setValue(mensahe)
             }else{
                 val alertDialog = AlertDialog.Builder(this)
