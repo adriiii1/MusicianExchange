@@ -42,4 +42,22 @@
             android:layout_marginStart="98dp" android:layout_marginTop="25dp"
             app:layout_constraintTop_toBottomOf="@+id/txtUsuario" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="98dp" android:layout_marginRight="98dp" android:textAlignment="center"/>
+    <TextView
+            android:text="Spotify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="183dp" android:layout_marginStart="183dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="183dp"
+            android:layout_marginRight="183dp"
+            android:layout_marginTop="67dp"
+            app:layout_constraintTop_toBottomOf="@+id/txtUsr"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="176dp"
+            android:layout_marginStart="176dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="176dp" android:layout_marginRight="176dp" android:layout_marginTop="33dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"/>
 </android.support.constraint.ConstraintLayout>

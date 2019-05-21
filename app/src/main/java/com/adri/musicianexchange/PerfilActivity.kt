@@ -60,6 +60,13 @@ class PerfilActivity : AppCompatActivity() {
                 }
             }
         }
+
+        btnSpotify.setOnClickListener {
+            SpotifyService.connect(this){
+                val intent = Intent(this,Main2Activity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 
     override fun onBackPressed() {
