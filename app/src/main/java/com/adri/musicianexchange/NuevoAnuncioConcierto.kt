@@ -53,7 +53,7 @@ class NuevoAnuncioConcierto : AppCompatActivity() {
     }
 
     private fun showDatePickerDialog() {
-        val fragment = DatePickerFragment.newInstance { view, year, month, dayOfMonth ->
+        val fragment = DatePickerFragment.newInstance { _, year, month, dayOfMonth ->
             val selectedDate: String = dayOfMonth.toString()+"-"+(month+1)+"-"+year
             txtFecha.setText(selectedDate)
         }

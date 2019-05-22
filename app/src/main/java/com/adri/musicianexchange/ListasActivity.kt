@@ -2,6 +2,7 @@ package com.adri.musicianexchange
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.hardware.fingerprint.FingerprintManagerCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -10,6 +11,8 @@ import com.google.gson.Gson
 import com.spotify.android.appremote.api.ConnectionParams
 import com.spotify.android.appremote.api.Connector
 import com.spotify.android.appremote.api.SpotifyAppRemote
+import kaaes.spotify.webapi.android.SpotifyApi
+import kaaes.spotify.webapi.android.SpotifyService
 
 
 class ListasActivity : AppCompatActivity(){

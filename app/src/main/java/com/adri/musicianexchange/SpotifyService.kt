@@ -6,7 +6,7 @@ import com.spotify.android.appremote.api.ConnectionParams
 import com.spotify.android.appremote.api.Connector
 import com.spotify.android.appremote.api.SpotifyAppRemote
 
-enum class estadoConexion{
+enum class EstadoConexion{
     CONECTADO, DESCONECTADO
 }
 
@@ -29,12 +29,13 @@ object SpotifyService{
             override fun onConnected(spotifyAppRemote: SpotifyAppRemote) {
                 this@SpotifyService.spotifyAppRemote = spotifyAppRemote
                 handler(true)
-                estadoConexion.CONECTADO
+                Log.d("SpotifyService","Conectado sin problemas")
+                EstadoConexion.CONECTADO
             }
             override fun onFailure(throwable: Throwable) {
                 Log.e("SpotifyService", throwable.message, throwable)
                 handler(false)
-                estadoConexion.DESCONECTADO
+                EstadoConexion.DESCONECTADO
             }
         }
         SpotifyAppRemote.connect(context, connectionParams, connectionListener)
@@ -42,6 +43,6 @@ object SpotifyService{
 
     fun disconnect() {
         SpotifyAppRemote.disconnect(spotifyAppRemote)
-        estadoConexion.DESCONECTADO
+        EstadoConexion.DESCONECTADO
     }
 }

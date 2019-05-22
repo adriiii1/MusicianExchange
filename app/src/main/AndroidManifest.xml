@@ -39,6 +39,10 @@
         <activity android:name=".NuevoAnuncioConcierto"/>
         <activity android:name=".ConciertoDetalle"/>
         <activity android:name=".VentaDetalle"/>
+        <activity android:name=".NuevoAnuncioPlaylists"/>
+        <activity
+                android:name="com.spotify.sdk.android.authentication.LoginActivity"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 
 </manifest>

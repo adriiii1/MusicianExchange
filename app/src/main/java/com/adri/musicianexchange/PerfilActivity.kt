@@ -22,6 +22,11 @@ import java.util.*
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.storage.UploadTask
 import com.google.android.gms.tasks.Task
+import com.spotify.sdk.android.authentication.AuthenticationClient
+import com.spotify.sdk.android.authentication.AuthenticationRequest
+import com.spotify.sdk.android.authentication.AuthenticationResponse
+
+
 
 
 class PerfilActivity : AppCompatActivity() {
@@ -62,10 +67,15 @@ class PerfilActivity : AppCompatActivity() {
         }
 
         btnSpotify.setOnClickListener {
-            SpotifyService.connect(this){
-                val intent = Intent(this,Main2Activity::class.java)
-                startActivity(intent)
-            }
+            val REQUEST_CODE = 1337
+            val REDIRECT_URI = "http://localhost/callback"
+
+            val builder = AuthenticationRequest.Builder("00868c003ec44f00921ec16a27f18014", AuthenticationResponse.Type.TOKEN, REDIRECT_URI)
+
+            builder.setScopes(arrayOf("streaming"))
+            val request = builder.build()
+
+            AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request)
         }
     }
 
