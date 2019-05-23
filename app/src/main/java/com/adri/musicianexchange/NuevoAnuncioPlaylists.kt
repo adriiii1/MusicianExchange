@@ -11,7 +11,6 @@ import com.spotify.sdk.android.authentication.LoginActivity.REQUEST_CODE
 import android.content.Intent
 import android.widget.Toast
 
-
 class NuevoAnuncioPlaylists : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,8 +25,9 @@ class NuevoAnuncioPlaylists : AppCompatActivity() {
     private fun spotLogin() {
         val requestCode = 1337
         val redirectUri = "http://localhost/callback"
+        val clientId = "00868c003ec44f00921ec16a27f18014"
 
-        val builder = AuthenticationRequest.Builder("00868c003ec44f00921ec16a27f18014", AuthenticationResponse.Type.TOKEN, redirectUri)
+        val builder = AuthenticationRequest.Builder(clientId, AuthenticationResponse.Type.TOKEN, redirectUri)
 
         builder.setScopes(arrayOf("streaming"))
         val request = builder.build()
@@ -48,7 +48,6 @@ class NuevoAnuncioPlaylists : AppCompatActivity() {
                     Toast.makeText(this,"Ey this fakin broke broder",Toast.LENGTH_LONG)
                 }
                 else -> Toast.makeText(this,"Ni idea bro, esto ha sido una guerra",Toast.LENGTH_LONG)
-
             }
         }
     }

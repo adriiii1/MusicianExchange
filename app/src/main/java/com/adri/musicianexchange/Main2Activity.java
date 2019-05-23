@@ -18,8 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import org.jetbrains.annotations.NotNull;
 
-public class Main2Activity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class Main2Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth auth;
 
@@ -36,7 +35,6 @@ public class Main2Activity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
 
         auth = FirebaseAuth.getInstance();
 
@@ -90,7 +88,6 @@ public class Main2Activity extends AppCompatActivity
             startActivity(new Intent(Main2Activity.this, PerfilActivity.class));
             finish();
         }
-
         return super.onOptionsItemSelected(item);
     }
 

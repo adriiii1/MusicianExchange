@@ -2,18 +2,10 @@ package com.adri.musicianexchange
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.hardware.fingerprint.FingerprintManagerCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import com.google.firebase.database.*
 import com.google.gson.Gson
-import com.spotify.android.appremote.api.ConnectionParams
-import com.spotify.android.appremote.api.Connector
-import com.spotify.android.appremote.api.SpotifyAppRemote
-import kaaes.spotify.webapi.android.SpotifyApi
-import kaaes.spotify.webapi.android.SpotifyService
-
 
 class ListasActivity : AppCompatActivity(){
 
@@ -28,7 +20,6 @@ class ListasActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_listas)
-
 
         viewManager = LinearLayoutManager(this)
         viewAdapter = MiAdapterPlaylists(listPlaylists)
