@@ -33,13 +33,13 @@
                     android:layout_toRightOf="@+id/fotoPlaylist"
                     android:layout_alignParentTop="true"
                     android:textSize="22sp"
-            />
+                    android:visibility="visible"/>
 
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/urlPlaylist"
-                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:textSize="22sp"
                     android:visibility="invisible"/>

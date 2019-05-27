@@ -21,7 +21,7 @@ class ListasActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_listas)
 
-        viewManager = LinearLayoutManager(this)
+        /*viewManager = LinearLayoutManager(this)
         viewAdapter = MiAdapterPlaylists(listPlaylists)
 
         database = FirebaseDatabase.getInstance()
@@ -49,6 +49,6 @@ class ListasActivity : AppCompatActivity(){
                 println("loadPost:onCancelled ${databaseError.toException()}")
             }
         }
-        dbReference.child("playlists").addValueEventListener(menuListener)
+        dbReference.child("playlists").addValueEventListener(menuListener)*/
     }
 }
