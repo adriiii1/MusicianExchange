@@ -15,7 +15,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="16dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp" style="@style/Widget.AppCompat.Button.Colored"
-            android:textColor="@color/bg_register"/>
+            android:textColor="@color/bg_register" android:background="@drawable/btn_blanco"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
             android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginTop="16dp"
             app:layout_constraintTop_toTopOf="parent"
             android:textColor="@android:color/white"
-            android:textColorHint="@color/colorAccent" android:hint="Objeto"/>
+            android:textColorHint="@color/btn_login_bg" android:hint="Objeto"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             android:id="@+id/txtTipo" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/txtObjeto" android:textColor="@android:color/white"
-            android:hint="Tipo" android:textColorHint="@color/colorAccent"/>
+            android:hint="Tipo" android:textColorHint="@color/btn_login_bg"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:layout_marginStart="16dp" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/txtTipo" android:inputType="text"
             android:textColor="@android:color/white" android:hint="Ciudad"
-            android:textColorHint="@color/colorAccent"/>
+            android:textColorHint="@color/btn_login_bg"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/txtCiudad" android:textColor="@android:color/white"
-            android:hint="Precio" android:textColorHint="@color/colorAccent"/>
+            android:hint="Precio" android:textColorHint="@color/btn_login_bg"/>
     <Button
             android:text="Foto"
             android:layout_width="wrap_content"
@@ -64,6 +64,6 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="88dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp" style="@style/Widget.AppCompat.Button.Colored"
-            android:textColor="@color/bg_register"/>
+            android:textColor="@color/bg_register" android:background="@drawable/btn_blanco"/>
 
 </android.support.constraint.ConstraintLayout>

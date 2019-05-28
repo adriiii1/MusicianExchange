@@ -26,9 +26,6 @@ import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 import com.spotify.sdk.android.authentication.AuthenticationResponse
 
-
-
-
 class PerfilActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
@@ -64,18 +61,6 @@ class PerfilActivity : AppCompatActivity() {
                     Log.d("ProfileUpdate","El perfil se ha actualizado")
                 }
             }
-        }
-
-        btnSpotify.setOnClickListener {
-            val REQUEST_CODE = 1337
-            val REDIRECT_URI = "http://localhost/callback"
-
-            val builder = AuthenticationRequest.Builder("00868c003ec44f00921ec16a27f18014", AuthenticationResponse.Type.TOKEN, REDIRECT_URI)
-
-            builder.setScopes(arrayOf("streaming"))
-            val request = builder.build()
-
-            AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request)
         }
     }
 

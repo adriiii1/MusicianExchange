@@ -31,7 +31,6 @@
         <activity android:name=".NuevoAnuncioVenta"/>
         <activity android:name=".ListasActivity"/>
         <activity android:name=".ConciertosActivity"/>
-        <activity android:name=".resetPasswordActivity"/>
         <activity android:name=".GruposActivity"/>
         <activity android:name=".NuevoAnuncioGrupo"/>
         <activity android:name=".VentasActivity"/>

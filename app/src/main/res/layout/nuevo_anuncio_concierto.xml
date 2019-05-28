@@ -15,7 +15,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="16dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp" style="@style/Widget.AppCompat.Button.Colored"
-            android:textColor="@color/bg_register"/>
+            android:textColor="@color/bg_register" android:background="@drawable/btn_blanco"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
             android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginTop="16dp"
             app:layout_constraintTop_toTopOf="parent"
             android:textColor="@android:color/white"
-            android:textColorHint="@color/colorAccent" android:hint="Grupo"
+            android:textColorHint="@color/btn_login_bg" android:hint="Grupo"
             style="@style/Widget.AppCompat.EditText"/>
     <EditText
             android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
             android:id="@+id/txtLugar" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/txtGrupoConcierto" android:textColor="@android:color/white"
-            android:hint="Lugar" android:textColorHint="@color/colorAccent"/>
+            android:hint="Lugar" android:textColorHint="@color/btn_login_bg"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             android:ems="10"
             android:id="@+id/txtPrecioConcierto"
             android:textColor="@android:color/white"
-            android:hint="Precio" android:textColorHint="@color/colorAccent" android:layout_marginTop="16dp"
+            android:hint="Precio" android:textColorHint="@color/btn_login_bg" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/txtFecha"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="17dp"
             android:layout_marginStart="17dp"/>
@@ -67,6 +67,6 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="88dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp" style="@style/Widget.AppCompat.Button.Colored"
-            android:textColor="@color/bg_register"/>
+            android:textColor="@color/bg_register" android:background="@drawable/btn_blanco"/>
 
 </android.support.constraint.ConstraintLayout>

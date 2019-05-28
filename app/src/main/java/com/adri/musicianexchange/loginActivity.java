@@ -50,13 +50,6 @@ public class loginActivity extends AppCompatActivity{
             }
         });
 
-        btnReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //startActivity(new Intent(loginActivity.this, ResetPasswordActivity.class));
-            }
-        });
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
