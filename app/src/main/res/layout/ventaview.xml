@@ -10,9 +10,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/cv"
             android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-
-    >
+            android:foreground="?android:attr/selectableItemBackground">
 
         <RelativeLayout
                 android:layout_width="match_parent"
