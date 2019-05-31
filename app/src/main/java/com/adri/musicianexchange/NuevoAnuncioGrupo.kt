@@ -22,7 +22,11 @@ class NuevoAnuncioGrupo : AppCompatActivity() {
         dbReference = database.getReference("Grupos")
 
         btInsGrupo.setOnClickListener {
-            loadDatabase(dbReference)
+            if(txtNom.text.isEmpty() || txtgen.text.isEmpty() || txtPlazas.text.isEmpty() || ciudadGrupo.text.isEmpty()){
+                Toast.makeText(this,"Rellena todos los datos",Toast.LENGTH_LONG)
+            }else {
+                loadDatabase(dbReference)
+            }
         }
     }
 

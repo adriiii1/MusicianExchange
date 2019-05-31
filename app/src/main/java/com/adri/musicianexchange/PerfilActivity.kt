@@ -17,6 +17,7 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.FirebaseStorage
 import android.app.ProgressDialog
 import android.util.Log
+import android.widget.Toast
 import com.google.android.gms.tasks.Continuation
 import java.util.*
 import com.google.firebase.auth.UserProfileChangeRequest
@@ -54,11 +55,16 @@ class PerfilActivity : AppCompatActivity() {
 
         btnGuardar.setOnClickListener {
             uploadImage()
-            val profileUpdates = UserProfileChangeRequest.Builder()
-                .setDisplayName(txt_nomUser.text.toString()).build()
-            user.updateProfile(profileUpdates).addOnCompleteListener {
-                if(it.isSuccessful){
-                    Log.d("ProfileUpdate","El perfil se ha actualizado")
+
+            if(txt_nomUser.text!!.isEmpty()){
+                Toast.makeText(this,"Rellena todos los datos",Toast.LENGTH_LONG)
+            }else {
+                val profileUpdates = UserProfileChangeRequest.Builder()
+                    .setDisplayName(txt_nomUser.text.toString()).build()
+                user.updateProfile(profileUpdates).addOnCompleteListener {
+                    if(it.isSuccessful){
+                        Toast.makeText(this,"Perfil actualizado con éxito",Toast.LENGTH_SHORT)
+                    }
                 }
             }
         }

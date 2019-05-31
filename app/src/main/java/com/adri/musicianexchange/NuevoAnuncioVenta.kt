@@ -41,7 +41,11 @@ class NuevoAnuncioVenta : AppCompatActivity() {
         stReference = storage.reference
 
         btInsVenta.setOnClickListener {
-            loadDatabase()
+            if(txtObjeto.text.isEmpty() || txtTipo.text.isEmpty() || txtCiudad.text.isEmpty() || txtPrecio.text.isEmpty() || filePath==null){
+                Toast.makeText(this,"Rellena todos los datos",Toast.LENGTH_LONG)
+            }else {
+                loadDatabase()
+            }
         }
 
         btSelFoto.setOnClickListener {

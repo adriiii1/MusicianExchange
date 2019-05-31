@@ -44,7 +44,11 @@ class NuevoAnuncioConcierto : AppCompatActivity() {
         }
 
         btInsConcierto.setOnClickListener {
-            loadDatabase()
+            if(txtGrupoConcierto.text.isEmpty() || txtLugar.text.isEmpty() || txtFecha.text.isEmpty() || txtPrecioConcierto.text.isEmpty() || filePath==null){
+                Toast.makeText(this,"Rellena todos los datos",Toast.LENGTH_LONG)
+            }else {
+                loadDatabase()
+            }
         }
 
         btSelCartel.setOnClickListener {

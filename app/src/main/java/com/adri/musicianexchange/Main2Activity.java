@@ -85,7 +85,6 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             auth.signOut();
-            SpotifyService.INSTANCE.disconnect();
             startActivity(new Intent(Main2Activity.this, loginActivity.class));
             finish();
         }

@@ -1,7 +1,6 @@
 package com.adri.musicianexchange
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -11,7 +10,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_chat.*
-import kotlinx.android.synthetic.main.nuevo_anuncio_concierto.*
 
 class ChatActivity : AppCompatActivity() {
 
