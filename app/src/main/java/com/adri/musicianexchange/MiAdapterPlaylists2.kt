@@ -23,6 +23,7 @@ class MiAdapterPlaylists2(private val listPlaylists: ArrayList<Playlists>, priva
     override fun onBindViewHolder(p0: PlaylistsViewHolder, p1: Int) {
         p0.nombrePlaylist.text = listPlaylists[p1].nombrePlaylist.replace("igual","=").replace("barra","/").replace("points",":").replace("%&%"," ").replace("aterisko","#")
         p0.urlPlaylist.text = listPlaylists[p1].urlPlaylists.replace("igual","=").replace("barra","/").replace("points",":").replace("%&%"," ").replace("aterisko","#")
+        p0.userId.text = listPlaylists[p1].userID.replace("igual","=").replace("barra","/").replace("points",":").replace("%&%"," ").replace("aterisko","#")
         val url = listPlaylists[p1].fotoPlaylists.replace("igual","=").replace("barra","/").replace("points",":").replace("%&%"," ").replace("aterisko","#")
         Glide.with(p0.cv.context).load(url).into(p0.fotoPlaylist)
         p0.cv.setOnClickListener {
@@ -41,5 +42,6 @@ class MiAdapterPlaylists2(private val listPlaylists: ArrayList<Playlists>, priva
         internal var nombrePlaylist: TextView= itemView.findViewById(R.id.nombrePlaylist)
         internal var urlPlaylist: TextView= itemView.findViewById(R.id.urlPlaylist)
         internal var fotoPlaylist: ImageView= itemView.findViewById(R.id.fotoPlaylist) as ImageView
+        internal var userId: TextView = itemView.findViewById(R.id.txtUserP)
     }
 }

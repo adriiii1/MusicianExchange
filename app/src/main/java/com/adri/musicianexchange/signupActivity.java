@@ -3,13 +3,11 @@ package com.adri.musicianexchange;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.*;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,6 +25,7 @@ public class signupActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+
         auth = FirebaseAuth.getInstance();
 
         btnSignIn =  findViewById(R.id.sign_in_button);
@@ -35,7 +34,8 @@ public class signupActivity extends AppCompatActivity{
         inputPassword = findViewById(R.id.password);
         progressBar = findViewById(R.id.progressBar);
 
-
+        ImageView logo = findViewById(R.id.logi);
+        logo.setImageResource(R.drawable.fl_logo_draw);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,17 +51,17 @@ public class signupActivity extends AppCompatActivity{
                 String password = inputPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Nene el correo!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Indique una dirección de correo", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Nene la contraseña!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Indique una contraseña", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (password.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Joder Mike, esa contraseña es basura!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "La contraseña ha de ser de mínimo 6 caracteres", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -73,7 +73,7 @@ public class signupActivity extends AppCompatActivity{
                                 Toast.makeText(signupActivity.this, "Usuario creado!" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
                                 progressBar.setVisibility(View.GONE);
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(signupActivity.this, "Error, la autenticación ha fallado." + task.getException(),
+                                    Toast.makeText(signupActivity.this, "Error: compruebe la conexión" + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
                                     startActivity(new Intent(signupActivity.this, Main2Activity.class));

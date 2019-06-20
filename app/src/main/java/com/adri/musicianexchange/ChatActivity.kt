@@ -5,17 +5,21 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_chat.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.ValueEventListener
 
 class ChatActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
+    private lateinit var db : DatabaseReference
     var listMensajes: ArrayList<Mensaje> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,20 +29,44 @@ class ChatActivity : AppCompatActivity() {
         viewManager = LinearLayoutManager(this)
         viewAdapter = MiAdapterMensajes(listMensajes)
 
-        val txtMensaje:EditText = findViewById(R.id.txtInputMensaje)
         val argumentos = intent.extras
-        val db = FirebaseDatabase.getInstance().getReference("Conversaciones").child("conversaciones")
+        db = FirebaseDatabase.getInstance().getReference("Conversaciones").child("conversaciones")
         val userr =  FirebaseAuth.getInstance().currentUser!!.uid
-        val convers = db.equalTo(userr+argumentos.get("user")).path.isEmpty
-        val conver: DatabaseReference
 
-        if(convers) {
-            val key = userr+argumentos.get("user")
-            db.child(key).push().key
-            conver = db.child(key).ref
-        } else {
-            conver = db.equalTo(userr+argumentos.get("user")).ref
+        val type1 = userr + argumentos.get("user").toString()
+        val type2 = argumentos.get("user").toString() + userr
+
+        val oidor = object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                if (p0.hasChild(type1)){
+                    cargarMensajes(type1,true)
+                }else if(p0.hasChild(type2)){
+                    cargarMensajes(type2,true)
+                }else{
+                    if(type1<type2){
+                        cargarMensajes(type2,false)
+                    }else{
+                        cargarMensajes(type1,false)
+                    }
+                }
+            }
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
         }
+        db.addListenerForSingleValueEvent(oidor)
+    }
+
+    private fun cargarMensajes(type :String, existe: Boolean){
+        if(!existe){
+            Log.d("AAAA","Ey this das not exis")
+            db.child(type).push()
+            db.child(type).child("user1").setValue(intent.extras.get("user"))
+            db.child(type).child("user2").setValue(FirebaseAuth.getInstance().currentUser!!.uid)
+        }
+
+        val conver = db.child(type)
+        val txtMensaje:EditText = findViewById(R.id.txtInputMensaje)
 
         btnEnviarMensaje.setOnClickListener {
             val mensaje = strPrepare(txtMensaje.text.toString())
@@ -82,8 +110,7 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun strPrepare(string: String): String{
-        val retString = string.replace("/","barra")
+        return string.replace("/","barra")
             .replace("=","igual").replace(":","points").replace(" ","%&%")
-        return retString
     }
 }

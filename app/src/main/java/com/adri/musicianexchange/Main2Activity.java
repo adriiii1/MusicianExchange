@@ -3,8 +3,11 @@ package com.adri.musicianexchange;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
@@ -17,11 +20,20 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.*;
+import com.google.gson.Gson;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth auth;
+    private ArrayList<Conversacion> listConversaciones = new ArrayList<Conversacion>();
+    private DatabaseReference dbRef;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter miAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +64,48 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         }
         ImageView imgUsuario = findViewById(R.id.imgUsuario);
         TextView txtUsuario= findViewById(R.id.txtUsuario);
-        TextView txtUsr= findViewById(R.id.txtUsr);
         if(user.getPhotoUrl()!= null){
             Glide.with(this).load(imageUrl).into(imgUsuario);
         }
-        if(user.getDisplayName()!=null){
-            txtUsr.setText((user.getDisplayName()));
-        }
         txtUsuario.setText(String.valueOf(user.getEmail()));
+        
+        cargarConversaciones(user);
+    }
+
+    private void cargarConversaciones(final FirebaseUser user) {
+        dbRef = FirebaseDatabase.getInstance().getReference("Conversaciones").child("conversaciones");
+
+        layoutManager = new LinearLayoutManager(this);
+        miAdapter = new MiAdapterConversaciones(listConversaciones);
+
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listConversaciones.clear();
+                Gson gson = new Gson();
+                for (DataSnapshot obj: dataSnapshot.getChildren()) {
+                    String registro = String.valueOf(obj.getKey());
+                    try{
+                        if(registro.contains(user.getUid())){
+                            String otherUser = registro.replace(user.getUid(),"");
+                            Conversacion conver = new Conversacion(otherUser,registro);
+                            listConversaciones.add(conver);
+                        }
+
+                    }catch (com.google.gson.JsonSyntaxException e){}
+                }
+                recyclerView = findViewById(R.id.recyclerConvers);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setAdapter(miAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        dbRef.addValueEventListener(listener);
     }
 
     @Override

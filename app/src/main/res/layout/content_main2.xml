@@ -7,57 +7,40 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/app_bar_main2"
-        tools:context=".Main2Activity" android:background="@color/bg_register">
-    <TextView
-            android:text="Tu perfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="150dp"
-            android:layout_marginStart="150dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="158dp" android:layout_marginRight="158dp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="34dp"
-            app:layout_constraintBottom_toTopOf="@+id/imgUsuario"/>
-    <ImageView
+        tools:context=".Main2Activity" android:background="@drawable/fondi">
+    <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="110dp"
             android:layout_height="110dp" tools:srcCompat="@tools:sample/avatars[11]"
             android:id="@+id/imgUsuario" android:layout_marginEnd="133dp"
             android:layout_marginRight="133dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="134dp"
-            android:layout_marginStart="134dp" android:layout_marginTop="33dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView" tools:visibility="visible"
-            android:visibility="visible"/>
+            android:layout_marginStart="134dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FFFFFF" android:layout_marginTop="20dp" app:layout_constraintTop_toTopOf="parent"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txtUsuario"
             android:textColor="@color/white"
             android:text="correo" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="159dp" android:layout_marginRight="159dp" android:layout_marginTop="23dp"
+            android:layout_marginEnd="159dp" android:layout_marginRight="159dp" android:layout_marginTop="20dp"
             app:layout_constraintTop_toBottomOf="@+id/imgUsuario" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="160dp" android:layout_marginStart="160dp"/>
     <TextView
-            android:layout_width="165dp"
-            android:layout_height="27dp"
-            android:id="@+id/txtUsr" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="98dp"
-            android:layout_marginStart="98dp" android:layout_marginTop="25dp"
-            app:layout_constraintTop_toBottomOf="@+id/txtUsuario" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="98dp" android:layout_marginRight="98dp" android:textAlignment="center"/>
-    <TextView
-            android:text="Spotify"
+            android:text="Tus conversaciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
+            android:id="@+id/txtConvers" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp" android:layout_marginTop="65dp"
+            app:layout_constraintTop_toBottomOf="@+id/imgUsuario"/>
+    <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="341dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="13dp"
+            app:layout_constraintTop_toBottomOf="@+id/txtConvers" android:id="@+id/recyclerConvers"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="183dp" android:layout_marginStart="183dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="183dp"
-            android:layout_marginRight="183dp"
-            android:layout_marginTop="67dp"
-            app:layout_constraintTop_toBottomOf="@+id/txtUsr"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView3" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="176dp"
-            android:layout_marginStart="176dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="176dp" android:layout_marginRight="176dp" android:layout_marginTop="33dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"/>
+            app:layout_constraintEnd_toEndOf="parent"
+    />
 </android.support.constraint.ConstraintLayout>

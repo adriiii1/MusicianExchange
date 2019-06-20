@@ -4,6 +4,7 @@
       tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+        <item android:title="Anuncios"/>
         <item
                 android:id="@+id/nav_playlists"
                 android:icon="@drawable/fl_listas_rep"
@@ -12,33 +13,30 @@
                 android:id="@+id/nav_conciertos"
                 android:icon="@mipmap/bl_concierto"
                 android:title="@string/menu_tools"/>
-        <item android:title="Anuncios"/>
-        <group>
-            <item
-                    android:id="@+id/nav_ventas"
-                    android:icon="@mipmap/bl_amplifier"
-                    android:title="@string/menu_gallery"/>
-            <item
-                    android:id="@+id/nav_grupos"
-                    android:icon="@mipmap/bl_grupos"
-                    android:title="@string/menu_slideshow"/>
-        </group>
+        <item
+                android:id="@+id/nav_ventas"
+                android:icon="@mipmap/bl_amplifier"
+                android:title="@string/menu_gallery"/>
+        <item
+                android:id="@+id/nav_grupos"
+                android:icon="@mipmap/bl_grupos"
+                android:title="@string/menu_slideshow"/>
+    </group>
+    <group>
         <item android:title="Publicar"/>
-        <group>
-            <item android:id="@+id/nav_venta"
-                  android:icon="@drawable/fl_mas_solid"
-                  android:title="@string/menu_send"/>
-            <item android:id="@+id/nav_grupo"
-                  android:icon="@drawable/fl_mas"
-                  android:title="@string/menu_share"/>
+        <item android:icon="@drawable/fl_link_s"
+              android:title="Compartir una playlist"
+              android:id="@+id/nav_playlist"/>
+        <item android:icon="@drawable/fl_mas_simple"
+              android:title="Anunciar un concierto"
+              android:id="@+id/nav_concierto"/>
+        <item android:id="@+id/nav_venta"
+              android:icon="@drawable/fl_mas_solid"
+              android:title="@string/menu_send"/>
+        <item android:id="@+id/nav_grupo"
+              android:icon="@drawable/fl_mas"
+              android:title="@string/menu_share"/>
 
-            <item android:icon="@drawable/fl_link_s"
-                  android:title="Compartir una playlist"
-                  android:id="@+id/nav_playlist"/>
-            <item android:icon="@drawable/fl_mas_simple"
-                  android:title="Anunciar un concierto"
-                  android:id="@+id/nav_concierto"/>
-        </group>
     </group>
 
 </menu>

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <color name="colorPrimary">#7DAC91</color>
-    <color name="colorPrimaryDark">#4D6557</color>
-    <color name="colorAccent">#1BD8AC</color>
+    <color name="colorPrimary">#01110A</color>
+    <color name="colorPrimaryDark">#010E09</color>
+    <color name="colorAccent">#E6E8E6</color>
     <color name="background">#FAFAFA</color>
-    <color name="bg_login">#26AE90</color>
+    <color name="bg_login">#F15025</color>
     <color name="bg_register">#2E3237</color>
     <color name="bg_main">#428bca</color>
     <color name="white">#FFFFFF</color>
     <color name="input_login">#222222</color>
+    <color name="flame">#F15025</color>
     <color name="input_login_hint">#999999</color>
     <color name="input_register">#888888</color>
     <color name="input_register_bg">#3B4148</color>

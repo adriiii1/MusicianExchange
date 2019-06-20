@@ -49,7 +49,7 @@ class MiAdapterPlaylists(private val listPlaylists: List<PlaylistSimple>) :
                                 .replace(":","points").replace(" ","%&%").replace("#","aterisko")
                         , fotoPlaylists = listPlaylists[p1].images[0].url.replace("/","barra").replace("=","igual")
                                 .replace(":","points").replace(" ","%&%").replace("#","aterisko")
-                        ,userID = FirebaseAuth.getInstance().currentUser!!.uid
+                        ,userID = FirebaseAuth.getInstance().currentUser!!.displayName.toString()
                     )
                     val key = dbReference.child("playlists").push().key
                     dbReference.child("playlists").child(key!!).setValue(p)

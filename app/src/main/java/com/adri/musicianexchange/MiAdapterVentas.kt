@@ -36,6 +36,7 @@ class MiAdapterVentas(private val listVentas: ArrayList<Venta>,private val sfm: 
         p0.cv.setOnClickListener {
             val intent= Intent(p0.cv.context,VentaDetalle::class.java)
             var bun=Bundle()
+            bun.putString("userId",listVentas[p1].userId)
             bun.putString("objeto",p0.objeto.text.toString())
             bun.putString("tipo",p0.tipo.text.toString())
             bun.putString("ciudad",p0.ciudad.text.toString())

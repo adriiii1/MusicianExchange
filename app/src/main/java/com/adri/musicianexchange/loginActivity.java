@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,14 +43,8 @@ public class loginActivity extends AppCompatActivity{
         btnSignup = findViewById(R.id.btn_signup);
         btnLogin = findViewById(R.id.btn_login);
 
-        findViewById(R.id.login).setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
-                return true;
-            }
-        });
+        ImageView logo = findViewById(R.id.logo_view);
+        logo.setImageResource(R.mipmap.fl_logo);
 
         auth = FirebaseAuth.getInstance();
 
@@ -67,12 +62,12 @@ public class loginActivity extends AppCompatActivity{
                 final String password = inputPassword.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Nene el correo!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Indique una dirección de correo", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Nene la contraseña!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Indique una contraseña", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -84,7 +79,7 @@ public class loginActivity extends AppCompatActivity{
                                     if (password.length() < 6) {
                                         inputPassword.setError(getString(R.string.minimum_password));
                                     } else {
-                                        Toast.makeText(loginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(loginActivity.this, "Error: comprueba los datos o la conexión", Toast.LENGTH_LONG).show();
                                     }
                                 } else {
                                     Toast.makeText(loginActivity.this,"Sesión iniciada",Toast.LENGTH_SHORT);

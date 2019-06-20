@@ -23,6 +23,8 @@ import java.util.*
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.storage.UploadTask
 import com.google.android.gms.tasks.Task
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.spotify.sdk.android.authentication.AuthenticationClient
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 import com.spotify.sdk.android.authentication.AuthenticationResponse
@@ -36,6 +38,7 @@ class PerfilActivity : AppCompatActivity() {
     private var filePath: Uri? = null
     private lateinit var storage: FirebaseStorage
     private lateinit var storageReference: StorageReference
+    private lateinit var urlFoto: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +69,10 @@ class PerfilActivity : AppCompatActivity() {
                         Toast.makeText(this,"Perfil actualizado con éxito",Toast.LENGTH_SHORT)
                     }
                 }
+                val database = FirebaseDatabase.getInstance()
+                val dbReference = database.getReference("Usuarios").child("usuarios")
+
+                dbReference.child(FirebaseAuth.getInstance().currentUser!!.uid).child("displayName").setValue(txt_nomUser.text.toString())
             }
         }
     }
@@ -116,6 +123,10 @@ class PerfilActivity : AppCompatActivity() {
             }).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     progressDialog.dismiss()
+                    val database = FirebaseDatabase.getInstance()
+                    val dbReference = database.getReference("Usuarios").child("usuarios")
+                    urlFoto = strPrepare(task.result.toString())
+                    dbReference.child(FirebaseAuth.getInstance().currentUser!!.uid).child("urlFoto").setValue(urlFoto)
                     val profileUpdates = UserProfileChangeRequest.Builder()
                         .setPhotoUri(Uri.parse(task.result.toString())).build()
                     user.updateProfile(profileUpdates).addOnCompleteListener {
@@ -130,5 +141,10 @@ class PerfilActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun strPrepare(string: String): String{
+        return string.replace("/","barra")
+            .replace("=","igual").replace(":","points").replace(" ","%&%")
     }
 }

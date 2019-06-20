@@ -10,6 +10,7 @@ import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.spotify.sdk.android.authentication.AuthenticationRequest
 import kaaes.spotify.webapi.android.SpotifyApi
@@ -35,10 +36,6 @@ class NuevoAnuncioPlaylists : AppCompatActivity() {
         btSpot.setOnClickListener {
             spotLogin()
         }
-
-        btnCargar.setOnClickListener {
-            cargarListas()
-        }
     }
 
     private fun spotLogin() {
@@ -61,6 +58,7 @@ class NuevoAnuncioPlaylists : AppCompatActivity() {
         try {
             val thiss: Pager<PlaylistSimple> = spotify.myPlaylists
             listPlaylists = thiss.items
+            btSpot.visibility= View.GONE
         }catch (error: RetrofitError){
             error.printStackTrace()
         }
@@ -84,6 +82,7 @@ class NuevoAnuncioPlaylists : AppCompatActivity() {
                 AuthenticationResponse.Type.TOKEN -> {
                     tokensillo = response.accessToken
                     Log.d("Token" , tokensillo)
+                    cargarListas()
                 }
                 AuthenticationResponse.Type.ERROR -> {
                     tokensillo = "fak"
