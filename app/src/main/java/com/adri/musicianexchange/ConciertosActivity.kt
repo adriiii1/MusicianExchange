@@ -26,6 +26,7 @@ class ConciertosActivity : AppCompatActivity(){
 
         database = FirebaseDatabase.getInstance()
         dbReference = database.getReference("Conciertos")
+        dbReference.keepSynced(true)
 
         val menuListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {

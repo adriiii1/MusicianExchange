@@ -44,6 +44,7 @@ class ListasActivity : AppCompatActivity(){
 
                     database = FirebaseDatabase.getInstance()
                     dbReference = database.getReference("Playlists")
+                    dbReference.keepSynced(true)
 
                     val menuListener = object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {

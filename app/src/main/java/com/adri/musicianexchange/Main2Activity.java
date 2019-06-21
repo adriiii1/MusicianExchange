@@ -73,7 +73,9 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
     }
 
     private void cargarConversaciones(final FirebaseUser user) {
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         dbRef = FirebaseDatabase.getInstance().getReference("Conversaciones").child("conversaciones");
+        dbRef.keepSynced(true);
 
         layoutManager = new LinearLayoutManager(this);
         miAdapter = new MiAdapterConversaciones(listConversaciones);

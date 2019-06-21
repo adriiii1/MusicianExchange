@@ -25,6 +25,7 @@ class GruposActivity : AppCompatActivity(){
 
         database = FirebaseDatabase.getInstance()
         dbReference = database.getReference("Grupos")
+        dbReference.keepSynced(true)
 
         val menuListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
